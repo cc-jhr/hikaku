@@ -1,0 +1,21 @@
+group = 'de.codecentric.hikaku'
+archivesBaseName = 'hikaku-blueprint-parser'
+
+dependencies {
+  api project(':core')
+  api 'com.vladsch.flexmark:flexmark-all:0.40.26'
+
+  testImplementation "io.mockk:mockk:1.9.1"
+  testImplementation "org.junit.jupiter:junit-jupiter-params:5.4.0"
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      pom.project {
+        name = 'hikaku-blueprint-parser'
+        description = 'A library to test if the implementation of a REST-API meets its specification. This module contains a converter for blueprint specifications.'
+      }
+    }
+  }
+}

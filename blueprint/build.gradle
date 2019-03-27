@@ -1,0 +1,20 @@
+group = 'de.codecentric.hikaku'
+archivesBaseName = 'hikaku-blueprint'
+
+dependencies {
+  api project(':core')
+  api 'com.atlassian.commonmark:commonmark:0.12.1'
+  
+  testImplementation "io.mockk:mockk:1.9.1"
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      pom.project {
+        name = 'hikaku-blueprint'
+        description = 'A library to test if the implementation of a REST-API meets its specification. This module contains a converter for blueprint specifications.'
+      }
+    }
+  }
+}

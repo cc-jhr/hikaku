@@ -7,5 +7,7 @@ include(
         'wadl',
         'raml',
         'jax-rs',
-        'micronaut'
+        'micronaut',
+        'blueprint',
+        'blueprint-parser'
 )
