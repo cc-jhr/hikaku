@@ -20,7 +20,7 @@ dependencies {
 
   testImplementation(kotlin("test-junit5"))
   testImplementation("org.junit.platform:junit-platform-launcher:1.8.2")
-  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
   testImplementation("org.assertj:assertj-core:3.20.2")
   testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
   testImplementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
