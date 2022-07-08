@@ -15,7 +15,7 @@ dependencies {
   api(kotlin("reflect"))
   api(kotlin("test"))
   api(project(":core"))
-  api("jakarta.ws.rs:jakarta.ws.rs-api:3.0.0")
+  api("jakarta.ws.rs:jakarta.ws.rs-api:3.1.0")
 
   testImplementation(kotlin("test-junit5"))
   testImplementation("org.junit.platform:junit-platform-launcher:1.8.2")
