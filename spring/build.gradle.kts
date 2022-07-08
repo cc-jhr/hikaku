@@ -8,7 +8,7 @@ plugins {
 val moduleName = "hikaku-spring"
 val githubUsername: String by rootProject.extra
 val githubReleaseToken: String by rootProject.extra
-val springBootVersion = "2.6.9"
+val springBootVersion = "2.7.1"
 
 dependencies {
   implementation(platform(kotlin("bom")))
