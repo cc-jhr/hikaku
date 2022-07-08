@@ -18,7 +18,7 @@ dependencies {
   api("jakarta.ws.rs:jakarta.ws.rs-api:3.0.0")
 
   testImplementation(kotlin("test-junit5"))
-  testImplementation("org.junit.platform:junit-platform-launcher:1.7.2")
+  testImplementation("org.junit.platform:junit-platform-launcher:1.8.2")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.2")
   testImplementation("org.assertj:assertj-core:3.20.2")
 }
