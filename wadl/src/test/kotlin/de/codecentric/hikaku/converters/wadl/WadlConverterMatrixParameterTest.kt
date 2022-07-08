@@ -1,26 +1,28 @@
 package de.codecentric.hikaku.converters.wadl
 
 import de.codecentric.hikaku.endpoints.MatrixParameter
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
+import kotlin.test.Test
 import java.nio.file.Paths
 
 class WadlConverterMatrixParameterTest {
 
     @Test
     fun `check that matrix parameter are extracted correctly`() {
-        //given
+        // given
         val file = Paths.get(this::class.java.classLoader.getResource("matrix_parameters.wadl").toURI())
         val matrixParameters = setOf(
                 MatrixParameter("done", false),
-                MatrixParameter("tag", true)
+                MatrixParameter("tag", true),
         )
 
-        //when
+        // when
         val specification = WadlConverter(file)
 
-        //then
-        val resultingMatrixParameters = specification.conversionResult.toList()[0].matrixParameters
-        assertThat(resultingMatrixParameters).containsExactlyInAnyOrderElementsOf(matrixParameters)
+        // then
+        specification.conversionResult.first().matrixParameters mustSatisfy {
+            it containsExactly matrixParameters
+        }
     }
 }

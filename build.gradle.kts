@@ -11,6 +11,14 @@ val githubReleaseToken by extra { System.getenv("GH_PACKAGES_RELEASE_TOKEN") ?: 
 allprojects {
     repositories {
         mavenCentral()
+        maven {
+            name = "nagare"
+            url = uri("https://maven.pkg.github.com/cc-jhr/nagare")
+            credentials {
+                username = System.getenv("GH_USERNAME") ?: project.findProperty("GH_USERNAME") as String? ?: "cc-jhr"
+                password = System.getenv("GH_PACKAGES_READ_TOKEN") ?: project.findProperty("GH_PACKAGES_READ_TOKEN") as String? ?: "NOT_SET"
+            }
+        }
     }
     group = "io.github.ccjhr.hikaku"
 }
@@ -46,7 +54,6 @@ tasks.jacocoTestReport {
 
     reports {
         html.required.set(false)
-        html.outputLocation.set(file("$buildDir/reports/jacoco/test/jacocoFullReport.html"))
         xml.required.set(true)
         xml.outputLocation.set(file("$buildDir/reports/jacoco/test/jacocoFullReport.xml"))
     }
