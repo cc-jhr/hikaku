@@ -8,7 +8,7 @@ plugins {
 val moduleName = "hikaku-spring"
 val githubUsername: String by rootProject.extra
 val githubReleaseToken: String by rootProject.extra
-val springBootVersion = "2.5.4"
+val springBootVersion = "2.5.14"
 
 dependencies {
   implementation(platform(kotlin("bom")))
@@ -34,7 +34,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 tasks.withType<Test> {
   useJUnitPlatform()
-  reports.html.required.set(false)
+  reports.html.required.set(true)
   reports.junitXml.required.set(false)
   maxParallelForks = Runtime.getRuntime().availableProcessors()
 }
