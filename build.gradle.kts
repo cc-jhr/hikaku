@@ -15,8 +15,22 @@ allprojects {
     group = "io.github.ccjhr.hikaku"
 }
 
+val sources: List<File> =
+    subprojects
+        .flatMap { project ->
+            file("${project.projectDir}/src/")
+                .walkBottomUp()
+                .maxDepth(2)
+                .filter { it.path.contains("kotlin", ignoreCase = true) }
+                .filter { it.path.contains("main", ignoreCase = true) }
+                .toSet()
+                .toList()
+        }
+
 coverallsJacoco {
+    reportSourceSets = sources
     reportPath = "$buildDir/reports/jacoco/test/jacocoFullReport.xml"
+    dryRun = true
 }
 
 tasks.jacocoTestReport {
