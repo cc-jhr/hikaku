@@ -30,7 +30,6 @@ val sources: List<File> =
 coverallsJacoco {
     reportSourceSets = sources
     reportPath = "$buildDir/reports/jacoco/test/jacocoFullReport.xml"
-    dryRun = true
 }
 
 tasks.jacocoTestReport {
