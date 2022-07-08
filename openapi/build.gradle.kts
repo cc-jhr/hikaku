@@ -15,7 +15,7 @@ dependencies {
   api(kotlin("reflect"))
   api(kotlin("test"))
   api(project(":core"))
-  api("io.swagger.parser.v3:swagger-parser-v3:2.0.27")
+  api("io.swagger.parser.v3:swagger-parser-v3:2.1.1")
 
   testImplementation(kotlin("test-junit5"))
   testImplementation("org.junit.platform:junit-platform-launcher:1.8.2")
