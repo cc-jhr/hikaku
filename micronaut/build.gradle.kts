@@ -2,6 +2,7 @@ plugins {
   kotlin("jvm") version "1.7.10"
   `maven-publish`
   `java-library`
+  jacoco
 }
 
 val moduleName = "hikaku-micronaut"
