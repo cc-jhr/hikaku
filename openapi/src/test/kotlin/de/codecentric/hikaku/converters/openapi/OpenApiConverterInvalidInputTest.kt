@@ -1,10 +1,14 @@
 package de.codecentric.hikaku.converters.openapi
 
 import de.codecentric.hikaku.converters.EndpointConverterException
+import io.github.ccjhr.mustSatisfy
+import io.github.ccjhr.string.contains
+import io.github.ccjhr.throwable.expectsException
+import io.github.ccjhr.throwable.hasMessage
 import org.junit.jupiter.api.Nested
-import kotlin.test.Test
 import java.io.File
-import java.nio.file.Paths
+import kotlin.io.path.toPath
+import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
 class OpenApiConverterInvalidInputTest {
@@ -15,34 +19,49 @@ class OpenApiConverterInvalidInputTest {
         @Test
         fun `empty file returns an empty list`() {
             //given
-            val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI())
+            val file = this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI().toPath()
 
             //when
-            assertFailsWith<EndpointConverterException> {
+            val result = expectsException<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
+            }
+
+            // then
+            result mustSatisfy {
+                it hasMessage "Given OpenAPI file is blank."
             }
         }
 
         @Test
         fun `file consisting solely of whitespaces returns an empty list`() {
             //given
-            val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
+            val file = this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI().toPath()
 
             //when
-            assertFailsWith<EndpointConverterException> {
+            val result = assertFailsWith<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
+            }
+
+            // then
+            result mustSatisfy {
+                it hasMessage "Given OpenAPI file is blank."
             }
         }
 
         @Test
         fun `OpenAPI yaml file containing syntax error`() {
             //given
-            val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/syntax_error.yaml").toURI())
+            val file = this::class.java.classLoader.getResource("invalid_input/syntax_error.yaml").toURI().toPath()
             val converter = OpenApiConverter(file)
 
             //when
-            assertFailsWith<EndpointConverterException> {
+            val result = assertFailsWith<EndpointConverterException> {
                 converter.conversionResult
+            }
+
+            // then
+            result.message mustSatisfy {
+                it contains  "Failed to parse OpenAPI spec."
             }
         }
     }
@@ -56,19 +75,29 @@ class OpenApiConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI())
 
             //when
-            assertFailsWith<EndpointConverterException> {
+            val result = assertFailsWith<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
+            }
+
+            // then
+            result mustSatisfy {
+                it hasMessage "Given OpenAPI file is blank."
             }
         }
 
         @Test
         fun `file consisting solely of whitespaces returns an empty list`() {
             //given
-                val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
+            val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
 
             //when
-            assertFailsWith<EndpointConverterException> {
+            val result = assertFailsWith<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
+            }
+
+            // then
+            result mustSatisfy {
+                it hasMessage "Given OpenAPI file is blank."
             }
         }
 
@@ -79,8 +108,13 @@ class OpenApiConverterInvalidInputTest {
             val converter = OpenApiConverter(file)
 
             //when
-            assertFailsWith<EndpointConverterException> {
+            val result = assertFailsWith<EndpointConverterException> {
                 converter.conversionResult
+            }
+
+            // then
+            result.message mustSatisfy {
+                it contains "Failed to parse OpenAPI spec"
             }
         }
     }
