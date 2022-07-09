@@ -2,7 +2,7 @@ package de.codecentric.hikaku.converters.openapi
 
 import de.codecentric.hikaku.endpoints.HeaderParameter
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import java.nio.file.Paths
 
 class OpenApiConverterHeaderParameterTest {

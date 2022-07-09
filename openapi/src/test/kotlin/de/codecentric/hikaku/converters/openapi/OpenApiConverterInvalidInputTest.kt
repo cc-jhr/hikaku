@@ -2,7 +2,7 @@ package de.codecentric.hikaku.converters.openapi
 
 import de.codecentric.hikaku.converters.EndpointConverterException
 import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import java.io.File
 import java.nio.file.Paths
 import kotlin.test.assertFailsWith

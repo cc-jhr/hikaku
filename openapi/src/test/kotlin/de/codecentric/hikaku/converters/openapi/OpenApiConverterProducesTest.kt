@@ -4,7 +4,7 @@ import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.DELETE
 import de.codecentric.hikaku.endpoints.HttpMethod.GET
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import java.nio.file.Paths
 
 class OpenApiConverterProducesTest {
