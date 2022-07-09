@@ -2,72 +2,79 @@ package de.codecentric.hikaku.converters.raml
 
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.GET
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
-import java.nio.file.Paths
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
+import kotlin.io.path.toPath
+import kotlin.test.Test
 
 class RamlConverterDeprecationTest {
 
     @Test
     fun `no deprecations`() {
-        //given
-        val file = Paths.get(this::class.java.classLoader.getResource("deprecation/none.raml").toURI())
+        // given
+        val file = this::class.java.classLoader.getResource("deprecation/none.raml").toURI().toPath()
 
         val specification = setOf(
-                Endpoint(
-                        path = "/todos",
-                        httpMethod = GET,
-                        produces = setOf("text/plain"),
-                        deprecated = false
-                )
+            Endpoint(
+                path = "/todos",
+                httpMethod = GET,
+                produces = setOf("text/plain"),
+                deprecated = false,
+            ),
         )
 
-        //when
+        // when
         val implementation = RamlConverter(file).conversionResult
 
-        //then
-        assertThat(implementation).containsExactlyInAnyOrderElementsOf(specification)
+        // then
+        implementation mustSatisfy {
+            it containsExactly specification
+        }
     }
 
     @Test
     fun `deprecated resource`() {
-        //given
-        val file = Paths.get(this::class.java.classLoader.getResource("deprecation/on_resource.raml").toURI())
+        // given
+        val file = this::class.java.classLoader.getResource("deprecation/on_resource.raml").toURI().toPath()
 
         val specification = setOf(
-                Endpoint(
-                        path = "/todos",
-                        httpMethod = GET,
-                        produces = setOf("text/plain"),
-                        deprecated = true
-                )
+            Endpoint(
+                path = "/todos",
+                httpMethod = GET,
+                produces = setOf("text/plain"),
+                deprecated = true,
+            )
         )
 
-        //when
+        // when
         val implementation = RamlConverter(file).conversionResult
 
-        //then
-        assertThat(implementation).containsExactlyInAnyOrderElementsOf(specification)
+        // then
+        implementation mustSatisfy {
+            it containsExactly specification
+        }
     }
 
     @Test
     fun `deprecated method`() {
-        //given
-        val file = Paths.get(this::class.java.classLoader.getResource("deprecation/on_method.raml").toURI())
+        // given
+        val file = this::class.java.classLoader.getResource("deprecation/on_method.raml").toURI().toPath()
 
         val specification = setOf(
-                Endpoint(
-                        path = "/todos",
-                        httpMethod = GET,
-                        produces = setOf("text/plain"),
-                        deprecated = true
-                )
+            Endpoint(
+                path = "/todos",
+                httpMethod = GET,
+                produces = setOf("text/plain"),
+                deprecated = true,
+            )
         )
 
-        //when
+        // when
         val implementation = RamlConverter(file).conversionResult
 
-        //then
-        assertThat(implementation).containsExactlyInAnyOrderElementsOf(specification)
+        // then
+        implementation mustSatisfy {
+            it containsExactly specification
+        }
     }
 }
