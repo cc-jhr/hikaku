@@ -2,6 +2,7 @@ package de.codecentric.hikaku.converters.raml
 
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
+import io.github.ccjhr.boolean.`is`
 import io.github.ccjhr.collection.CollectionAssertionAdjective.Empty
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.collection.`is`
@@ -44,8 +45,8 @@ class RamlConverterHttpMethodTest {
         val implementation = RamlConverter(file).conversionResult
 
         // then
-        implementation mustSatisfy {
-            it `is` Empty
+        implementation.isEmpty() mustSatisfy {
+            it `is` true // TODO: could be changed to `is` Empty when KT-47475 gets fixed
         }
     }
 }

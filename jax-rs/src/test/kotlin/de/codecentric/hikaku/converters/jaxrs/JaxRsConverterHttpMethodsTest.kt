@@ -2,9 +2,8 @@ package de.codecentric.hikaku.converters.jaxrs
 
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
-import io.github.ccjhr.collection.CollectionAssertionAdjective.Empty
+import io.github.ccjhr.boolean.`is`
 import io.github.ccjhr.collection.containsExactly
-import io.github.ccjhr.collection.`is`
 import io.github.ccjhr.mustSatisfy
 import kotlin.test.Test
 
@@ -38,8 +37,8 @@ class JaxRsConverterHttpMethodsTest {
         val result = JaxRsConverter("test.jaxrs.httpmethod.noannotation").conversionResult
 
         //then
-        result mustSatisfy {
-            it `is` Empty
+        result.isEmpty() mustSatisfy {
+            it `is` true // TODO: could be changed to `is` Empty when KT-47475 gets fixed
         }
     }
 }
