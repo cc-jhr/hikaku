@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Nested
 import java.io.File
 import kotlin.io.path.toPath
 import kotlin.test.Test
-import kotlin.test.assertFailsWith
 
 class OpenApiConverterInvalidInputTest {
 
@@ -38,7 +37,7 @@ class OpenApiConverterInvalidInputTest {
             val file = this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI().toPath()
 
             //when
-            val result = assertFailsWith<EndpointConverterException> {
+            val result = expectsException<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
             }
 
@@ -55,7 +54,7 @@ class OpenApiConverterInvalidInputTest {
             val converter = OpenApiConverter(file)
 
             //when
-            val result = assertFailsWith<EndpointConverterException> {
+            val result = expectsException<EndpointConverterException> {
                 converter.conversionResult
             }
 
@@ -75,7 +74,7 @@ class OpenApiConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI())
 
             //when
-            val result = assertFailsWith<EndpointConverterException> {
+            val result = expectsException<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
             }
 
@@ -91,7 +90,7 @@ class OpenApiConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
 
             //when
-            val result = assertFailsWith<EndpointConverterException> {
+            val result = expectsException<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
             }
 
@@ -108,7 +107,7 @@ class OpenApiConverterInvalidInputTest {
             val converter = OpenApiConverter(file)
 
             //when
-            val result = assertFailsWith<EndpointConverterException> {
+            val result = expectsException<EndpointConverterException> {
                 converter.conversionResult
             }
 

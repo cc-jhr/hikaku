@@ -5,7 +5,6 @@ import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.throwable.expectsException
 import io.github.ccjhr.throwable.hasMessage
 import kotlin.test.Test
-import kotlin.test.assertFailsWith
 
 class JaxRsConverterPackageDefinitionTest {
 
@@ -25,7 +24,7 @@ class JaxRsConverterPackageDefinitionTest {
     @Test
     fun `invoking converter with blank string leads to EndpointConverterException`() {
         // when
-        val result = assertFailsWith<EndpointConverterException> {
+        val result = expectsException<EndpointConverterException> {
             JaxRsConverter("     ").conversionResult
         }
 
