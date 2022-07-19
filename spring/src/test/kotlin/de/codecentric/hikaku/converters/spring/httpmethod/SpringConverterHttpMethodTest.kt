@@ -3,15 +3,16 @@ package de.codecentric.hikaku.converters.spring.httpmethod
 import de.codecentric.hikaku.converters.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
-import org.assertj.core.api.Assertions.assertThat
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.http.MediaType.TEXT_HTML_VALUE
+import kotlin.test.Test
 
 class HttpMethodTestController {
 
@@ -22,7 +23,10 @@ class HttpMethodTestController {
         inner class ClassLevelTests {
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassWithExplicitGetMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassWithExplicitGetMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithExplicitGetMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -31,21 +35,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit GET method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", GET),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", GET),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassWithExplicitPostMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassWithExplicitPostMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithExplicitPostMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -54,21 +63,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit POST method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", POST),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", POST),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassWithExplicitHeadMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassWithExplicitHeadMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithExplicitHeadMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -77,20 +91,25 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit HEAD method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassWithExplicitPutMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassWithExplicitPutMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithExplicitPutMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -99,21 +118,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit PUT method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", PUT),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", PUT),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassWithExplicitPatchMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassWithExplicitPatchMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithExplicitPatchMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -122,21 +146,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit PATCH method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", PATCH),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", PATCH),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassWithExplicitDeleteMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassWithExplicitDeleteMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithExplicitDeleteMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -145,21 +174,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit DELETE method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", DELETE),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", DELETE),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassWithExplicitTraceMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassWithExplicitTraceMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithExplicitTraceMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -168,21 +202,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit TRACE method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", TRACE),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", TRACE),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassWithExplicitOptionsMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassWithExplicitOptionsMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithExplicitOptionsMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -191,20 +230,25 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit OPTIONS method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassNoHttpMethodDefinedController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassNoHttpMethodDefinedController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class NoHttpMethodDefinedTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -213,25 +257,30 @@ class HttpMethodTestController {
                 fun `no http method defined means that spring supports all http methods except for trace`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", GET),
-                            Endpoint("/todos", PUT),
-                            Endpoint("/todos", POST),
-                            Endpoint("/todos", DELETE),
-                            Endpoint("/todos", PATCH),
-                            Endpoint("/todos", HEAD),
-                            Endpoint("/todos", OPTIONS)
+                        Endpoint("/todos", GET),
+                        Endpoint("/todos", PUT),
+                        Endpoint("/todos", POST),
+                        Endpoint("/todos", DELETE),
+                        Endpoint("/todos", PATCH),
+                        Endpoint("/todos", HEAD),
+                        Endpoint("/todos", OPTIONS),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnClassWithMultipleMethodsController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnClassWithMultipleMethodsController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithMultipleMethodsTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -240,18 +289,20 @@ class HttpMethodTestController {
                 fun `endpoint providing multiple http methods`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", PUT),
-                            Endpoint("/todos", PATCH),
-                            Endpoint("/todos", TRACE),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", PUT),
+                        Endpoint("/todos", PATCH),
+                        Endpoint("/todos", TRACE),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
@@ -261,7 +312,10 @@ class HttpMethodTestController {
         inner class FunctionLevelTests {
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionWithExplicitGetMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionWithExplicitGetMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnFunctionWithExplicitGetMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -270,21 +324,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit GET method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", GET),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", GET),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionWithExplicitPostMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionWithExplicitPostMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnFunctionWithExplicitPostMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -293,21 +352,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit POST method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", POST),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", POST),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionWithExplicitHeadMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionWithExplicitHeadMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnFunctionWithExplicitHeadMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -316,20 +380,25 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit HEAD method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionWithExplicitPutMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionWithExplicitPutMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnFunctionWithExplicitPutMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -338,21 +407,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit PUT method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", PUT),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", PUT),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionWithExplicitPatchMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionWithExplicitPatchMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnFunctionWithExplicitPatchMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -361,21 +435,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit PATCH method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", PATCH),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", PATCH),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionWithExplicitDeleteMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionWithExplicitDeleteMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnFunctionWithExplicitDeleteMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -384,21 +463,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit DELETE method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", DELETE),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", DELETE),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionWithExplicitTraceMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionWithExplicitTraceMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnFunctionWithExplicitTraceMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -407,21 +491,26 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit TRACE method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", TRACE),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", TRACE),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionWithExplicitOptionsMethodController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionWithExplicitOptionsMethodController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnFunctionWithExplicitOptionsMethodTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -430,20 +519,25 @@ class HttpMethodTestController {
                 fun `endpoint defined on class having explicit OPTIONS method definition is extracted correctly`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionNoHttpMethodDefinedController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionNoHttpMethodDefinedController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class NoHttpMethodDefinedTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -452,25 +546,30 @@ class HttpMethodTestController {
                 fun `no http method defined means that spring supports all http methods except for trace`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", GET),
-                            Endpoint("/todos", PUT),
-                            Endpoint("/todos", POST),
-                            Endpoint("/todos", DELETE),
-                            Endpoint("/todos", PATCH),
-                            Endpoint("/todos", HEAD),
-                            Endpoint("/todos", OPTIONS)
+                        Endpoint("/todos", GET),
+                        Endpoint("/todos", PUT),
+                        Endpoint("/todos", POST),
+                        Endpoint("/todos", DELETE),
+                        Endpoint("/todos", PATCH),
+                        Endpoint("/todos", HEAD),
+                        Endpoint("/todos", OPTIONS),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
 
             @Nested
-            @WebMvcTest(RequestMappingDefinedOnFunctionWithMultipleMethodsController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                RequestMappingDefinedOnFunctionWithMultipleMethodsController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class DefinedOnClassWithMultipleMethodsTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -479,18 +578,20 @@ class HttpMethodTestController {
                 fun `endpoint providing multiple http methods`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", PUT),
-                            Endpoint("/todos", PATCH),
-                            Endpoint("/todos", TRACE),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", PUT),
+                        Endpoint("/todos", PATCH),
+                        Endpoint("/todos", TRACE),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
         }
@@ -509,16 +610,18 @@ class HttpMethodTestController {
             fun `endpoint defined on function using GetMapping anbnotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
@@ -532,16 +635,18 @@ class HttpMethodTestController {
             fun `endpoint defined on function using DeleteMapping anbnotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
@@ -555,16 +660,18 @@ class HttpMethodTestController {
             fun `endpoint defined on function using PatchMapping anbnotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
@@ -578,16 +685,18 @@ class HttpMethodTestController {
             fun `endpoint defined on function using PostMapping anbnotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
@@ -601,16 +710,18 @@ class HttpMethodTestController {
             fun `endpoint defined on function using PutMapping anbnotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
@@ -618,7 +729,10 @@ class HttpMethodTestController {
         inner class HttpMethodMappingAnnotationTests {
 
             @Nested
-            @WebMvcTest(MultipleHttpMethodMappingAnnotationsController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(
+                MultipleHttpMethodMappingAnnotationsController::class,
+                excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+            )
             inner class MultipleHttpMethodMappingAnnotationsTest {
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -627,16 +741,18 @@ class HttpMethodTestController {
                 fun `multiple HttpMethodMapping annotations are not supported by spring - most outer annotation wins`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
-                            Endpoint("/todos", GET),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint("/todos", HEAD)
+                        Endpoint("/todos", GET),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint("/todos", HEAD),
                     )
 
                     //when
-                    val implementation = SpringConverter(context)
+                    val implementation = SpringConverter(context).conversionResult
 
                     //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                    implementation mustSatisfy {
+                        it containsExactly specification
+                    }
                 }
             }
         }
@@ -646,7 +762,10 @@ class HttpMethodTestController {
     inner class ConjunctionTests {
 
         @Nested
-        @WebMvcTest(RequestMappingDefinedOnClassAndFunctionWithDifferentHttpMethodsController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingDefinedOnClassAndFunctionWithDifferentHttpMethodsController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class DefinedOnClassAndFunctionWithDifferentHttpMethodsTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -655,22 +774,27 @@ class HttpMethodTestController {
             fun `No overwrite for RequestMapping defined on class and function for the same path with different http methods - instead both http methods will be supported`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingDefinedOnClassAndFunctionWithDifferentHttpMethodsAndDifferentPathsController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingDefinedOnClassAndFunctionWithDifferentHttpMethodsAndDifferentPathsController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class DefinedOnClassAndFunctionWithDifferentHttpMethodsAndDifferentPathsTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -679,25 +803,30 @@ class HttpMethodTestController {
             fun `RequestMapping defined on class and function for the different paths with different http methods will create two endpoints with combined http methods for the nested path`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos/{id}", GET),
-                        Endpoint("/todos/{id}", PUT),
-                        Endpoint("/todos/{id}", OPTIONS),
-                        Endpoint("/todos/{id}", HEAD)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos/{id}", GET),
+                    Endpoint("/todos/{id}", PUT),
+                    Endpoint("/todos/{id}", OPTIONS),
+                    Endpoint("/todos/{id}", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingWithPostAndGetMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingWithPostAndGetMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingWithPostAndGetMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -706,22 +835,27 @@ class HttpMethodTestController {
             fun `RequestMapping providing POST defined on class and GetMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingWithPostAndDeleteMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingWithPostAndDeleteMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingWithPostAndDeleteMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -730,22 +864,27 @@ class HttpMethodTestController {
             fun `RequestMapping providing POST defined on class and DeleteMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingWithPostAndPatchMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingWithPostAndPatchMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingWithPostAndPatchMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -754,22 +893,27 @@ class HttpMethodTestController {
             fun `RequestMapping providing POST defined on class and PatchMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingWithTraceAndPostMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingWithTraceAndPostMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingWithTraceAndPostMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -778,22 +922,27 @@ class HttpMethodTestController {
             fun `RequestMapping providing TRACE defined on class and PostMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", TRACE),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", TRACE),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingWithPostAndPutMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingWithPostAndPutMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingWithPostAndPutMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -802,22 +951,27 @@ class HttpMethodTestController {
             fun `RequestMapping providing POST defined on class and PutMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(EmptyRequestMappingAndGetMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            EmptyRequestMappingAndGetMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class EmptyRequestMappingAndGetMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -826,21 +980,26 @@ class HttpMethodTestController {
             fun `RequestMapping without http method defined on class and GetMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(EmptyRequestMappingAndDeleteMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            EmptyRequestMappingAndDeleteMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class EmptyRequestMappingAndDeleteMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -849,21 +1008,26 @@ class HttpMethodTestController {
             fun `RequestMapping without http method defined on class and DeleteMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(EmptyRequestMappingAndPatchMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            EmptyRequestMappingAndPatchMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class EmptyRequestMappingAndPatchMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -872,21 +1036,26 @@ class HttpMethodTestController {
             fun `RequestMapping without http method defined on class and PatchMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(EmptyRequestMappingAndPostMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            EmptyRequestMappingAndPostMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class EmptyRequestMappingAndPostMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -895,21 +1064,26 @@ class HttpMethodTestController {
             fun `RequestMapping without http method defined on class and PostMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(EmptyRequestMappingAndPutMappingInCombinationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            EmptyRequestMappingAndPutMappingInCombinationController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class EmptyRequestMappingAndPutMappingInCombinationTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -918,16 +1092,18 @@ class HttpMethodTestController {
             fun `RequestMapping without http method defined on class and PutMapping on function`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", OPTIONS),
-                        Endpoint("/todos", HEAD)
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
     }
@@ -936,7 +1112,10 @@ class HttpMethodTestController {
     inner class OverwriteTests {
 
         @Nested
-        @WebMvcTest(RequestMappingFirstAndGetMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingFirstAndGetMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingFirstAndGetMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -945,25 +1124,30 @@ class HttpMethodTestController {
             fun `RequestMapping and GetMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(GetMappingFirstAndRequestMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            GetMappingFirstAndRequestMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class GetMappingFirstAndRequestMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -972,25 +1156,30 @@ class HttpMethodTestController {
             fun `RequestMapping and GetMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingFirstAndDeleteMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingFirstAndDeleteMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingFirstAndDeleteMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -999,25 +1188,30 @@ class HttpMethodTestController {
             fun `RequestMapping and DeleteMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(DeleteMappingFirstAndRequestMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            DeleteMappingFirstAndRequestMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class DeleteMappingFirstAndRequestMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -1026,25 +1220,30 @@ class HttpMethodTestController {
             fun `RequestMapping and DeleteMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingFirstAndPatchMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingFirstAndPatchMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingFirstAndPatchMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -1053,25 +1252,30 @@ class HttpMethodTestController {
             fun `RequestMapping and PatchMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(PatchMappingFirstAndRequestMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            PatchMappingFirstAndRequestMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class PatchMappingFirstAndRequestMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -1080,25 +1284,30 @@ class HttpMethodTestController {
             fun `RequestMapping and PatchMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingFirstAndPostMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingFirstAndPostMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingFirstAndPostMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -1107,25 +1316,30 @@ class HttpMethodTestController {
             fun `RequestMapping and PostMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(PostMappingFirstAndRequestMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            PostMappingFirstAndRequestMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class PostMappingFirstAndRequestMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -1134,25 +1348,30 @@ class HttpMethodTestController {
             fun `RequestMapping and PostMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(RequestMappingFirstAndPutMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            RequestMappingFirstAndPutMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class RequestMappingFirstAndPutMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -1161,25 +1380,30 @@ class HttpMethodTestController {
             fun `RequestMapping and PutMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
 
         @Nested
-        @WebMvcTest(PutMappingFirstAndRequestMappingBothOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(
+            PutMappingFirstAndRequestMappingBothOnFunctionController::class,
+            excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+        )
         inner class PutMappingFirstAndRequestMappingBothOnFunctionTest {
             @Autowired
             lateinit var context: ConfigurableApplicationContext
@@ -1188,20 +1412,22 @@ class HttpMethodTestController {
             fun `RequestMapping and PutMapping both on function, but behaves like RequestMapping without http methods`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", PUT),
-                        Endpoint("/todos", POST),
-                        Endpoint("/todos", DELETE),
-                        Endpoint("/todos", PATCH),
-                        Endpoint("/todos", HEAD),
-                        Endpoint("/todos", OPTIONS)
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", PUT),
+                    Endpoint("/todos", POST),
+                    Endpoint("/todos", DELETE),
+                    Endpoint("/todos", PATCH),
+                    Endpoint("/todos", HEAD),
+                    Endpoint("/todos", OPTIONS),
                 )
 
                 //when
-                val implementation = SpringConverter(context)
+                val implementation = SpringConverter(context).conversionResult
 
                 //then
-                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                implementation mustSatisfy {
+                    it containsExactly specification
+                }
             }
         }
     }
@@ -1216,78 +1442,95 @@ class HttpMethodTestController {
         fun `all http methods are provided by the default error endpoint`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint("/todos", GET),
-                    Endpoint("/todos", OPTIONS),
-                    Endpoint("/todos", HEAD),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = POST,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = PUT,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = PATCH,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = DELETE,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint("/error", OPTIONS),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = GET,
-                            produces = setOf(TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = POST,
-                            produces = setOf(TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = HEAD,
-                            produces = setOf(TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = PUT,
-                            produces = setOf(TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = PATCH,
-                            produces = setOf(TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = DELETE,
-                            produces = setOf(TEXT_HTML_VALUE)
-                    ),
-                    Endpoint("/error", OPTIONS)
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = GET,
+                ),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = OPTIONS,
+                ),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = HEAD,
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = GET,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = POST,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = HEAD,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = PUT,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = PATCH,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = DELETE,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = OPTIONS,
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = GET,
+                    produces = setOf(TEXT_HTML_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = POST,
+                    produces = setOf(TEXT_HTML_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = HEAD,
+                    produces = setOf(TEXT_HTML_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = PUT,
+                    produces = setOf(TEXT_HTML_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = PATCH,
+                    produces = setOf(TEXT_HTML_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = DELETE,
+                    produces = setOf(TEXT_HTML_VALUE),
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = OPTIONS,
+                ),
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 }

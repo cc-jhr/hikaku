@@ -3,59 +3,66 @@ package de.codecentric.hikaku.converters.raml
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.GET
 import de.codecentric.hikaku.endpoints.HttpMethod.POST
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
-import java.nio.file.Paths
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
+import kotlin.io.path.toPath
+import kotlin.test.Test
 
 class RamlConverterPathTest {
 
     @Test
     fun `simple path`() {
-        //given
-        val file = Paths.get(this::class.java.classLoader.getResource("path/simple_path.raml").toURI())
+        // given
+        val file = this::class.java.classLoader.getResource("path/simple_path.raml").toURI().toPath()
 
         val specification = setOf(
-                Endpoint("/todos", GET)
+            Endpoint("/todos", GET),
         )
 
-        //when
+        // when
         val implementation = RamlConverter(file).conversionResult
 
-        //then
-        assertThat(implementation).containsExactlyInAnyOrderElementsOf(specification)
+        // then
+        implementation mustSatisfy {
+            it containsExactly specification
+        }
     }
 
     @Test
     fun `extract nested paths`() {
-        //given
-        val file = Paths.get(this::class.java.classLoader.getResource("path/nested_path.raml").toURI())
+        // given
+        val file = this::class.java.classLoader.getResource("path/nested_path.raml").toURI().toPath()
 
         val specification = setOf(
-                Endpoint("/todo", POST),
-                Endpoint("/todo/list", GET)
+            Endpoint("/todo", POST),
+            Endpoint("/todo/list", GET),
         )
 
-        //when
+        // when
         val implementation = RamlConverter(file).conversionResult
 
-        //then
-        assertThat(implementation).containsExactlyInAnyOrderElementsOf(specification)
+        // then
+        implementation mustSatisfy {
+            it containsExactly specification
+        }
     }
 
     @Test
     fun `extract nested paths defined in a single entry`() {
-        //given
-        val file = Paths.get(this::class.java.classLoader.getResource("path/nested_path_single_entry.raml").toURI())
+        // given
+        val file = this::class.java.classLoader.getResource("path/nested_path_single_entry.raml").toURI().toPath()
 
         val specification = setOf(
-                Endpoint("/todo/list", POST),
-                Endpoint("/todo/list", GET)
+            Endpoint("/todo/list", POST),
+            Endpoint("/todo/list", GET),
         )
 
-        //when
+        // when
         val implementation = RamlConverter(file).conversionResult
 
-        //then
-        assertThat(implementation).containsExactlyInAnyOrderElementsOf(specification)
+        // then
+        implementation mustSatisfy {
+            it containsExactly specification
+        }
     }
 }

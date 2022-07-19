@@ -1,8 +1,9 @@
 package de.codecentric.hikaku.extensions
 
-import org.assertj.core.api.Assertions.assertThat
+import io.github.ccjhr.boolean.`is`
+import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import java.lang.String as JavaString
 
 class ClassExtensionsTest {
@@ -19,7 +20,9 @@ class ClassExtensionsTest {
             val result = obj.isUnit()
 
             // then
-            assertThat(result).isTrue()
+            result mustSatisfy {
+                it `is` true
+            }
         }
 
         @Test
@@ -31,7 +34,9 @@ class ClassExtensionsTest {
             val result = obj.isUnit()
 
             // then
-            assertThat(result).isTrue()
+            result mustSatisfy {
+                it `is` true
+            }
         }
 
         @Test
@@ -43,7 +48,9 @@ class ClassExtensionsTest {
             val result = obj.isUnit()
 
             // then
-            assertThat(result).isFalse()
+            result mustSatisfy {
+                it `is` false
+            }
         }
     }
 
@@ -59,7 +66,9 @@ class ClassExtensionsTest {
             val result = obj.isString()
 
             // then
-            assertThat(result).isTrue()
+            result mustSatisfy {
+                it `is` true
+            }
         }
 
         @Test
@@ -71,7 +80,9 @@ class ClassExtensionsTest {
             val result = obj.isString()
 
             // then
-            assertThat(result).isTrue()
+            result mustSatisfy {
+                it `is` true
+            }
         }
 
         @Test
@@ -83,7 +94,9 @@ class ClassExtensionsTest {
             val result = obj.isString()
 
             // then
-            assertThat(result).isFalse()
+            result mustSatisfy {
+                it `is` false
+            }
         }
     }
 }

@@ -1,22 +1,36 @@
 package de.codecentric.hikaku.converters.jaxrs
 
 import de.codecentric.hikaku.converters.EndpointConverterException
-import org.junit.jupiter.api.Test
-import kotlin.test.assertFailsWith
+import io.github.ccjhr.mustSatisfy
+import io.github.ccjhr.throwable.expectsException
+import io.github.ccjhr.throwable.hasMessage
+import kotlin.test.Test
 
 class JaxRsConverterPackageDefinitionTest {
 
     @Test
     fun `invoking converter with empty string leads to EndpointConverterException`() {
-        assertFailsWith<EndpointConverterException> {
+        // when
+        val result = expectsException<EndpointConverterException> {
             JaxRsConverter("").conversionResult
+        }
+
+        // then
+        result mustSatisfy {
+            it hasMessage "Package name must not be blank."
         }
     }
 
     @Test
     fun `invoking converter with blank string leads to EndpointConverterException`() {
-        assertFailsWith<EndpointConverterException> {
+        // when
+        val result = expectsException<EndpointConverterException> {
             JaxRsConverter("     ").conversionResult
+        }
+
+        // then
+        result mustSatisfy {
+            it hasMessage "Package name must not be blank."
         }
     }
 }

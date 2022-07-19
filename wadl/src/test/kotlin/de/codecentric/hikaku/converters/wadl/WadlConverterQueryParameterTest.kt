@@ -1,26 +1,28 @@
 package de.codecentric.hikaku.converters.wadl
 
 import de.codecentric.hikaku.endpoints.QueryParameter
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
+import kotlin.test.Test
 import java.nio.file.Paths
 
 class WadlConverterQueryParameterTest {
 
     @Test
     fun `check that query parameter are extracted correctly`() {
-        //given
+        // given
         val file = Paths.get(this::class.java.classLoader.getResource("query_parameters.wadl").toURI())
         val queryParameters = setOf(
                 QueryParameter("tag", false),
-                QueryParameter("limit", true)
+                QueryParameter("limit", true),
         )
 
-        //when
+        // when
         val specification = WadlConverter(file)
 
-        //then
-        val resultingQueryParameters = specification.conversionResult.toList()[0].queryParameters
-        assertThat(resultingQueryParameters).containsExactlyInAnyOrderElementsOf(queryParameters)
+        // then
+        specification.conversionResult.first().queryParameters mustSatisfy {
+            it containsExactly queryParameters
+        }
     }
 }

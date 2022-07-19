@@ -2,9 +2,10 @@ package de.codecentric.hikaku.converters.micronaut
 
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.POST
-import org.assertj.core.api.Assertions.assertThat
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 
 class MicronautConverterConsumesTest {
 
@@ -15,41 +16,45 @@ class MicronautConverterConsumesTest {
         fun `single media type`() {
             //given
             val specification = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(
-                                "text/plain"
-                            )
-                    )
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = POST,
+                    consumes = setOf(
+                        "text/plain",
+                    ),
+                ),
             )
 
             //when
             val result = MicronautConverter("test.micronaut.consumes.onclass.onlycontroller.singlemediatype").conversionResult
 
             //then
-            assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+            result mustSatisfy {
+                it containsExactly specification
+            }
         }
 
         @Test
         fun `multiple media types`() {
             //given
             val specification = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(
-                                    "text/plain",
-                                    "application/xml"
-                            )
-                    )
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = POST,
+                    consumes = setOf(
+                        "text/plain",
+                        "application/xml",
+                    ),
+                ),
             )
 
             //when
             val result = MicronautConverter("test.micronaut.consumes.onclass.onlycontroller.multiplemediatypes").conversionResult
 
             //then
-            assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+            result mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
@@ -60,41 +65,45 @@ class MicronautConverterConsumesTest {
         fun `single media type`() {
             //given
             val specification = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(
-                                    "application/xml"
-                            )
-                    )
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = POST,
+                    consumes = setOf(
+                        "application/xml",
+                    ),
+                ),
             )
 
             //when
             val result = MicronautConverter("test.micronaut.consumes.onclass.consumesoverridescontroller.singlemediatype").conversionResult
 
             //then
-            assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+            result mustSatisfy {
+                it containsExactly specification
+            }
         }
 
         @Test
         fun `multiple media types`() {
             //given
             val specification = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(
-                                    "application/json",
-                                    "application/pdf"
-                            )
-                    )
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = POST,
+                    consumes = setOf(
+                        "application/json",
+                        "application/pdf",
+                    ),
+                ),
             )
 
             //when
             val result = MicronautConverter("test.micronaut.consumes.onclass.consumesoverridescontroller.multiplemediatypes").conversionResult
 
             //then
-            assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+            result mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
@@ -105,41 +114,45 @@ class MicronautConverterConsumesTest {
         fun `single media type`() {
             //given
             val specification = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(
-                                    "text/plain"
-                            )
-                    )
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = POST,
+                    consumes = setOf(
+                        "text/plain",
+                    ),
+                ),
             )
 
             //when
             val result = MicronautConverter("test.micronaut.consumes.onfunction.onlyconsumes.singlemediatype").conversionResult
 
             //then
-            assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+            result mustSatisfy {
+                it containsExactly specification
+            }
         }
 
         @Test
         fun `multiple media types`() {
             //given
             val specification = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(
-                                    "text/plain",
-                                    "application/xml"
-                            )
-                    )
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = POST,
+                    consumes = setOf(
+                        "text/plain",
+                        "application/xml",
+                    ),
+                ),
             )
 
             //when
             val result = MicronautConverter("test.micronaut.consumes.onfunction.onlyconsumes.multiplemediatypes").conversionResult
 
             //then
-            assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+            result mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
@@ -150,41 +163,45 @@ class MicronautConverterConsumesTest {
         fun `single media type`() {
             //given
             val specification = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(
-                                    "application/xml"
-                            )
-                    )
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = POST,
+                    consumes = setOf(
+                        "application/xml",
+                    ),
+                ),
             )
 
             //when
             val result = MicronautConverter("test.micronaut.consumes.onfunction.consumesoverridescontroller.singlemediatype").conversionResult
 
             //then
-            assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+            result mustSatisfy {
+                it containsExactly specification
+            }
         }
 
         @Test
         fun `multiple media types`() {
             //given
             val specification = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(
-                                    "application/json",
-                                    "application/pdf"
-                            )
-                    )
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = POST,
+                    consumes = setOf(
+                        "application/json",
+                        "application/pdf",
+                    ),
+                ),
             )
 
             //when
             val result = MicronautConverter("test.micronaut.consumes.onfunction.consumesoverridescontroller.multiplemediatypes").conversionResult
 
             //then
-            assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+            result mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
@@ -192,19 +209,21 @@ class MicronautConverterConsumesTest {
     fun `use default media if no consume info has been set`() {
         //given
         val specification = setOf(
-                Endpoint(
-                        path = "/todos",
-                        httpMethod = POST,
-                        consumes = setOf(
-                                "application/json"
-                        )
-                )
+            Endpoint(
+                path = "/todos",
+                httpMethod = POST,
+                consumes = setOf(
+                    "application/json",
+                ),
+            ),
         )
 
         //when
         val result = MicronautConverter("test.micronaut.consumes.default").conversionResult
 
         //then
-        assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+        result mustSatisfy {
+            it containsExactly specification
+        }
     }
 }

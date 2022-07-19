@@ -17,10 +17,10 @@ dependencies {
   api(project(":core"))
   api("io.swagger.parser.v3:swagger-parser-v3:2.1.1")
 
-  testImplementation(kotlin("test-junit5"))
+  testImplementation(kotlin("test"))
   testImplementation("org.junit.platform:junit-platform-launcher:1.8.2")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-  testImplementation("org.assertj:assertj-core:3.23.1")
+  testImplementation("io.github.ccjhr:nagare:3.0.0")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {

@@ -1,11 +1,13 @@
 package de.codecentric.hikaku.converters.wadl
 
 import de.codecentric.hikaku.converters.EndpointConverterException
+import io.github.ccjhr.mustSatisfy
+import io.github.ccjhr.throwable.expectsException
+import io.github.ccjhr.throwable.hasMessage
 import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
 import java.io.File
 import java.nio.file.Paths
-import kotlin.test.assertFailsWith
+import kotlin.test.Test
 
 class WadlConverterInvalidInputTest {
 
@@ -14,34 +16,44 @@ class WadlConverterInvalidInputTest {
 
         @Test
         fun `empty file returns an empty list`() {
-            //given
+            // given
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.wadl").toURI())
 
-            //when
-            assertFailsWith<EndpointConverterException> {
+            // when
+            val result = expectsException<EndpointConverterException> {
                 WadlConverter(file).conversionResult
+            }
+            
+            // then
+            result mustSatisfy {
+                it hasMessage "Given WADL is blank."
             }
         }
 
         @Test
         fun `file consisting solely of whitespaces returns an empty list`() {
-            //given
+            // given
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.wadl").toURI())
 
-            //when
-            assertFailsWith<EndpointConverterException> {
+            // when
+            val result = expectsException<EndpointConverterException> {
                 WadlConverter(file).conversionResult
+            }
+
+            // then
+            result mustSatisfy {
+                it hasMessage "Given WADL is blank."
             }
         }
 
         @Test
         fun `file containing syntax error`() {
-            //given
+            // given
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/syntax_error.wadl").toURI())
             val converter = WadlConverter(file)
 
-            //when
-            assertFailsWith<EndpointConverterException> {
+            // when
+            expectsException<EndpointConverterException> {
                 converter.conversionResult
             }
         }
@@ -52,34 +64,45 @@ class WadlConverterInvalidInputTest {
 
         @Test
         fun `empty file returns an empty list`() {
-            //given
+            // given
             val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.wadl").toURI())
 
-            //when
-            assertFailsWith<EndpointConverterException> {
+            // when
+            val result = expectsException<EndpointConverterException> {
                 WadlConverter(file).conversionResult
+            }
+
+            // then
+            result mustSatisfy {
+                it hasMessage "Given WADL is blank."
             }
         }
 
         @Test
         fun `file consisting solely of whitespaces returns an empty list`() {
-            //given
+            // given
             val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.wadl").toURI())
 
-            //when
-            assertFailsWith<EndpointConverterException> {
+            // when
+            val result = expectsException<EndpointConverterException> {
                 WadlConverter(file).conversionResult
+            }
+
+
+            // then
+            result mustSatisfy {
+                it hasMessage "Given WADL is blank."
             }
         }
 
         @Test
         fun `file containing syntax error`() {
-            //given
+            // given
             val file = File(this::class.java.classLoader.getResource("invalid_input/syntax_error.wadl").toURI())
             val converter = WadlConverter(file)
 
-            //when
-            assertFailsWith<EndpointConverterException> {
+            // when
+            expectsException<EndpointConverterException> {
                 converter.conversionResult
             }
         }

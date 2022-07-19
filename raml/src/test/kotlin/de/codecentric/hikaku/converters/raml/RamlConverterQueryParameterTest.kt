@@ -3,32 +3,35 @@ package de.codecentric.hikaku.converters.raml
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.GET
 import de.codecentric.hikaku.endpoints.QueryParameter
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
-import java.nio.file.Paths
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
+import kotlin.io.path.toPath
+import kotlin.test.Test
 
 class RamlConverterQueryParameterTest {
 
     @Test
     fun `extracts required and optional query parameter`() {
-        //given
-        val file = Paths.get(this::class.java.classLoader.getResource("query_parameter/query_parameter.raml").toURI())
+        // given
+        val file = this::class.java.classLoader.getResource("query_parameter/query_parameter.raml").toURI().toPath()
 
         val specification = setOf(
-                Endpoint(
-                        path ="/todos",
-                        httpMethod = GET,
-                        queryParameters = setOf(
-                                QueryParameter("limit", true),
-                                QueryParameter("tag", false)
-                        )
-                )
+            Endpoint(
+                path = "/todos",
+                httpMethod = GET,
+                queryParameters = setOf(
+                    QueryParameter("limit", true),
+                    QueryParameter("tag", false),
+                ),
+            ),
         )
 
-        //when
+        // when
         val implementation = RamlConverter(file).conversionResult
 
-        //then
-        assertThat(implementation).containsExactlyInAnyOrderElementsOf(specification)
+        // then
+        implementation mustSatisfy {
+            it containsExactly specification
+        }
     }
 }

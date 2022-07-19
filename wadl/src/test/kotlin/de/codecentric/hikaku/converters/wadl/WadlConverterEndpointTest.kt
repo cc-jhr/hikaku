@@ -2,47 +2,52 @@ package de.codecentric.hikaku.converters.wadl
 
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
+import kotlin.test.Test
 import java.nio.file.Paths
 
 class WadlConverterEndpointTest {
     
     @Test
     fun `extract two different paths`() {
-        //given
+        // given
         val file = Paths.get(this::class.java.classLoader.getResource("endpoints/endpoints_two_different_paths.wadl").toURI())
         val implementation: Set<Endpoint> = setOf(
             Endpoint("/todos", GET),
-            Endpoint("/tags", GET)
+            Endpoint("/tags", GET),
         )
 
-        //when
+        // when
         val specification = WadlConverter(file)
         
-        //then
-        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
+        // then
+        specification.conversionResult mustSatisfy {
+            it containsExactly implementation
+        }
     }
 
     @Test
     fun `extract two nested paths`() {
-        //given
+        // given
         val file = Paths.get(this::class.java.classLoader.getResource("endpoints/endpoints_two_nested_paths.wadl").toURI())
         val implementation: Set<Endpoint> = setOf(
                 Endpoint("/todos", GET),
-                Endpoint("/todos/{id}", GET)
+                Endpoint("/todos/{id}", GET),
         )
 
-        //when
+        // when
         val specification = WadlConverter(file)
 
-        //then
-        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
+        // then
+        specification.conversionResult mustSatisfy {
+            it containsExactly implementation
+        }
     }
 
     @Test
     fun `extract all http methods`() {
-        //given
+        // given
         val file = Paths.get(this::class.java.classLoader.getResource("endpoints/endpoints.wadl").toURI())
         val implementation: Set<Endpoint> = setOf(
                 Endpoint("/todos", GET),
@@ -57,13 +62,15 @@ class WadlConverterEndpointTest {
                 Endpoint("/tags", POST),
                 Endpoint("/tags", DELETE),
                 Endpoint("/tags", HEAD),
-                Endpoint("/tags", OPTIONS)
+                Endpoint("/tags", OPTIONS),
         )
 
-        //when
+        // when
         val specification = WadlConverter(file)
 
-        //then
-        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
+        // then
+        specification.conversionResult mustSatisfy {
+            it containsExactly implementation
+        }
     }
 }
