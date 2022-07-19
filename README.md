@@ -29,16 +29,31 @@ The aim of this project is to meet this need and offer a mechanism to check spec
   
 Please refer to the list of [all features](docs/features.md). To check the feature support for each converter.
 It is possible that not every converter supports every feature. Only the intersection of the features of two `EndpointConverter`s is used for the matching. Please keep that in mind regarding the equality of implementation and specification.
-  
-## Usage
 
-Setting up a test with hikaku is very simple. You just instantiate the `Hikaku` class and provide an `EndpointConverter` for the specification and another one for the implementation. Optionally, you can also pass an instance of `HikakuConfig`. Check the list of options and default values of the [config](docs/config.md). Then you call `match()` on the `Hikaku` class.
-The match result is sent to one or multiple `Reporter`. If the test fails kotlin's `DefaultAsserter.fail()` method is called.
+## Setup
 
-### Example
+In order to use this library you need a github account and a repository read token.
+When logged-in open the [personal access tokens page](https://github.com/settings/tokens). Create a new token having `read:packages` as the only permission.
 
-There is an artifact for each converter. So we need one dependency for the specification and one for the implementation. In this example our project consists of an OpenAPI specification and a Spring implementation. The specification does not contain the _/error_ endpoints created by spring, so we want to omit those.
-First add the dependencies for the converters, that we want to use. In this case `hikaku-openapi` and `hikaku-spring`.
+### Gradle - kotlin-dsl
+
+Add the repository to your existing list of repositories:
+
+```gradle
+repositories {
+    maven {
+        name = "nagare"
+        url = uri("https://maven.pkg.github.com/cc-jhr/hikaku")
+        credentials {
+            username = "your-github-username-here"            // you should probably use environment variables
+            password = "your-github-packages-read-token-here" // or gradle properties here to inject the values
+        }
+    }
+}
+```
+
+There is an artifact for each converter. So you need one dependency for the specification and one for the implementation.
+Here is an example for OpenAPI as specification and Spring as implementation.
 
 ```gradle
 dependencies {
@@ -46,6 +61,13 @@ dependencies {
     testImplementation "de.codecentric.hikaku:hikaku-spring:$hikakuVersion"
 }
 ```
+
+## Usage
+
+Setting up a test with hikaku is very simple. You just instantiate the `Hikaku` class and provide an `EndpointConverter` for the specification and another one for the implementation. Optionally, you can also pass an instance of `HikakuConfig`. Check the list of options and default values of the [config](docs/config.md). Then you call `match()` on the `Hikaku` class.
+The match result is sent to one or multiple `Reporter`. If the test fails kotlin's `DefaultAsserter.fail()` method is called.
+
+In the following example our project consists of an OpenAPI specification and a Spring implementation. The specification does not contain the _/error_ endpoints created by spring, so we want to omit those.
 
 #### Kotlin
 
