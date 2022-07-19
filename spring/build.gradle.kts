@@ -18,10 +18,10 @@ dependencies {
   api("org.springframework:spring-webmvc:5.3.21")
   api(project(":core"))
 
-  testImplementation(kotlin("test-junit5"))
+  testImplementation(kotlin("test"))
   testImplementation("org.junit.platform:junit-platform-launcher:1.8.2")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-  testImplementation("org.assertj:assertj-core:3.23.1")
+  testImplementation("io.github.ccjhr:nagare:3.0.0")
   testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
   testImplementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
 }

@@ -3,18 +3,22 @@ package de.codecentric.hikaku.converters.spring.produces.servletresponse
 import de.codecentric.hikaku.converters.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
-import org.assertj.core.api.Assertions.assertThat
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
-import kotlin.test.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
+import kotlin.test.Test
 
 class SpringConverterProducesServletResponseTest {
 
     @Nested
-    @WebMvcTest(ProducesServletResponseTestController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    @WebMvcTest(
+        ProducesServletResponseTestController::class,
+        excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+    )
     inner class NoProducesInfoAndNoReturnTypeTest {
 
         @Autowired
@@ -24,16 +28,18 @@ class SpringConverterProducesServletResponseTest {
         fun `media type and response servlet argument declared and no return type results in proper media type`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint("/todos", GET, produces = setOf("text/plain")),
-                    Endpoint("/todos", HEAD, produces = setOf("text/plain")),
-                    Endpoint("/todos", OPTIONS, produces = emptySet())
+                Endpoint("/todos", GET, produces = setOf("text/plain")),
+                Endpoint("/todos", HEAD, produces = setOf("text/plain")),
+                Endpoint("/todos", OPTIONS, produces = emptySet())
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 }

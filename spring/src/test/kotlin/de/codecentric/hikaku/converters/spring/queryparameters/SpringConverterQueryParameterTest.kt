@@ -4,21 +4,25 @@ import de.codecentric.hikaku.converters.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
 import de.codecentric.hikaku.endpoints.QueryParameter
-import org.assertj.core.api.Assertions.assertThat
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
+import io.github.ccjhr.throwable.expectsException
 import org.junit.jupiter.api.Nested
-import kotlin.test.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.MediaType
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
-import kotlin.test.assertFailsWith
+import kotlin.test.Test
 
 class SpringConverterQueryParameterTest {
 
     @Nested
-    @WebMvcTest(QueryParameterNamedByVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    @WebMvcTest(
+        QueryParameterNamedByVariableController::class,
+        excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+    )
     inner class QueryParameterNamedByVariableTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -28,32 +32,37 @@ class SpringConverterQueryParameterTest {
             //given
             val specification: Set<Endpoint> = setOf(
                 Endpoint(
-                        path = "/todos",
-                        httpMethod = GET,
-                        queryParameters = setOf(
-                            QueryParameter("tag", true)
-                        )
+                    path = "/todos",
+                    httpMethod = GET,
+                    queryParameters = setOf(
+                        QueryParameter("tag", true)
+                    )
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
-                        path = "/todos",
-                        httpMethod = HEAD,
-                        queryParameters = setOf(
-                                QueryParameter("tag", true)
-                        )
+                    path = "/todos",
+                    httpMethod = HEAD,
+                    queryParameters = setOf(
+                        QueryParameter("tag", true)
+                    )
                 )
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
     @Nested
-    @WebMvcTest(QueryParameterNamedByValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    @WebMvcTest(
+        QueryParameterNamedByValueAttributeController::class,
+        excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+    )
     inner class QueryParameterNamedByValueAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -63,32 +72,37 @@ class SpringConverterQueryParameterTest {
             //given
             val specification: Set<Endpoint> = setOf(
                 Endpoint(
-                        path = "/todos",
-                        httpMethod = GET,
-                        queryParameters = setOf(
-                            QueryParameter("tag", true)
-                        )
+                    path = "/todos",
+                    httpMethod = GET,
+                    queryParameters = setOf(
+                        QueryParameter("tag", true)
+                    )
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
-                        path = "/todos",
-                        httpMethod = HEAD,
-                        queryParameters = setOf(
-                            QueryParameter("tag", true)
-                        )
+                    path = "/todos",
+                    httpMethod = HEAD,
+                    queryParameters = setOf(
+                        QueryParameter("tag", true)
+                    )
                 )
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
     @Nested
-    @WebMvcTest(QueryParameterNamedByNameAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    @WebMvcTest(
+        QueryParameterNamedByNameAttributeController::class,
+        excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+    )
     inner class QueryParameterNamedByNameAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -98,39 +112,44 @@ class SpringConverterQueryParameterTest {
             //given
             val specification: Set<Endpoint> = setOf(
                 Endpoint(
-                        path = "/todos",
-                        httpMethod = GET,
-                        queryParameters = setOf(
-                            QueryParameter("tag", true)
-                        )
+                    path = "/todos",
+                    httpMethod = GET,
+                    queryParameters = setOf(
+                        QueryParameter("tag", true)
+                    )
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
-                        path = "/todos",
-                        httpMethod = HEAD,
-                        queryParameters = setOf(
-                            QueryParameter("tag", true)
-                        )
+                    path = "/todos",
+                    httpMethod = HEAD,
+                    queryParameters = setOf(
+                        QueryParameter("tag", true)
+                    )
                 )
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
     @Nested
-    @WebMvcTest(QueryParameterHavingBothNameAndValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    @WebMvcTest(
+        QueryParameterHavingBothNameAndValueAttributeController::class,
+        excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+    )
     inner class QueryParameterHavingBothNameAndValueAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
         fun `both 'value' and 'name' attribute defined for query parameter`() {
-            assertFailsWith<IllegalStateException> {
+            expectsException<IllegalStateException> {
                 SpringConverter(context).conversionResult
             }
         }
@@ -146,33 +165,38 @@ class SpringConverterQueryParameterTest {
         fun `query parameter set to optional`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = GET,
-                            queryParameters = setOf(
-                                QueryParameter("tag", false)
-                            )
-                    ),
-                    Endpoint("/todos", OPTIONS),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = HEAD,
-                            queryParameters = setOf(
-                                QueryParameter("tag", false)
-                            )
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = GET,
+                    queryParameters = setOf(
+                        QueryParameter("tag", false)
                     )
+                ),
+                Endpoint("/todos", OPTIONS),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = HEAD,
+                    queryParameters = setOf(
+                        QueryParameter("tag", false)
+                    )
+                )
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
     @Nested
-    @WebMvcTest(QueryParameterOptionalBecauseOfDefaultValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    @WebMvcTest(
+        QueryParameterOptionalBecauseOfDefaultValueController::class,
+        excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+    )
     inner class QueryParameterOptionalBecauseOfDefaultValueTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -182,27 +206,29 @@ class SpringConverterQueryParameterTest {
             //given
             val specification: Set<Endpoint> = setOf(
                 Endpoint(
-                        path = "/todos",
-                        httpMethod = GET,
-                        queryParameters = setOf(
-                            QueryParameter("tag", false)
-                        )
+                    path = "/todos",
+                    httpMethod = GET,
+                    queryParameters = setOf(
+                        QueryParameter("tag", false)
+                    )
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
-                        path = "/todos",
-                        httpMethod = HEAD,
-                        queryParameters = setOf(
-                            QueryParameter("tag", false)
-                        )
+                    path = "/todos",
+                    httpMethod = HEAD,
+                    queryParameters = setOf(
+                        QueryParameter("tag", false)
+                    )
                 )
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
@@ -216,90 +242,92 @@ class SpringConverterQueryParameterTest {
         fun `query parameters are not added to default error endpoint`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = GET,
-                            queryParameters = setOf(
-                                    QueryParameter("tag")
-                            )
-                    ),
-                    Endpoint("/todos", OPTIONS),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = HEAD,
-                            queryParameters = setOf(
-                                    QueryParameter("tag")
-                            )
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = POST,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = PUT,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = PATCH,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = DELETE,
-                            produces = setOf(APPLICATION_JSON_VALUE)
-                    ),
-                    Endpoint("/error", OPTIONS),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = GET,
-                            produces = setOf(MediaType.TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = POST,
-                            produces = setOf(MediaType.TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = HEAD,
-                            produces = setOf(MediaType.TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = PUT,
-                            produces = setOf(MediaType.TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = PATCH,
-                            produces = setOf(MediaType.TEXT_HTML_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/error",
-                            httpMethod = DELETE,
-                            produces = setOf(MediaType.TEXT_HTML_VALUE)
-                    ),
-                    Endpoint("/error", OPTIONS)
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = GET,
+                    queryParameters = setOf(
+                        QueryParameter("tag")
+                    )
+                ),
+                Endpoint("/todos", OPTIONS),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = HEAD,
+                    queryParameters = setOf(
+                        QueryParameter("tag")
+                    )
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = GET,
+                    produces = setOf(APPLICATION_JSON_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = POST,
+                    produces = setOf(APPLICATION_JSON_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = HEAD,
+                    produces = setOf(APPLICATION_JSON_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = PUT,
+                    produces = setOf(APPLICATION_JSON_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = PATCH,
+                    produces = setOf(APPLICATION_JSON_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = DELETE,
+                    produces = setOf(APPLICATION_JSON_VALUE)
+                ),
+                Endpoint("/error", OPTIONS),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = GET,
+                    produces = setOf(MediaType.TEXT_HTML_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = POST,
+                    produces = setOf(MediaType.TEXT_HTML_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = HEAD,
+                    produces = setOf(MediaType.TEXT_HTML_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = PUT,
+                    produces = setOf(MediaType.TEXT_HTML_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = PATCH,
+                    produces = setOf(MediaType.TEXT_HTML_VALUE)
+                ),
+                Endpoint(
+                    path = "/error",
+                    httpMethod = DELETE,
+                    produces = setOf(MediaType.TEXT_HTML_VALUE)
+                ),
+                Endpoint("/error", OPTIONS)
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 }

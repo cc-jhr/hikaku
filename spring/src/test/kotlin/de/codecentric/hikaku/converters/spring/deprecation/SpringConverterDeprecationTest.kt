@@ -3,14 +3,15 @@ package de.codecentric.hikaku.converters.spring.deprecation
 import de.codecentric.hikaku.converters.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
-import org.assertj.core.api.Assertions.assertThat
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
-import kotlin.test.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
+import kotlin.test.Test
 
 class SpringConverterDeprecationTest {
 
@@ -25,30 +26,37 @@ class SpringConverterDeprecationTest {
         fun `no deprecation`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_VALUE),
-                            deprecated = false
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_VALUE),
-                            deprecated = false
-                    ),
-                    Endpoint("/todos", OPTIONS, deprecated = false)
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = GET,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                    deprecated = false,
+                ),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = HEAD,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                    deprecated = false,
+                ),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = OPTIONS,
+                    deprecated = false,
+                ),
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
     @Nested
+    @Suppress("Deprecation")
     @WebMvcTest(DeprecatedClassController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class NoDeprecatedClassTest {
 
@@ -59,26 +67,32 @@ class SpringConverterDeprecationTest {
         fun `deprecated class`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint("/todos", OPTIONS, deprecated = true)
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = GET,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                    deprecated = true,
+                ),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = HEAD,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                    deprecated = true,
+                ),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = OPTIONS,
+                    deprecated = true,
+                ),
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
@@ -93,26 +107,32 @@ class SpringConverterDeprecationTest {
         fun `deprcated function`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint("/todos", OPTIONS, deprecated = true)
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = GET,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                    deprecated = true,
+                ),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = HEAD,
+                    produces = setOf(APPLICATION_JSON_VALUE),
+                    deprecated = true,
+                ),
+                Endpoint(
+                    path = "/todos",
+                    httpMethod = OPTIONS,
+                    deprecated = true,
+                ),
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 }

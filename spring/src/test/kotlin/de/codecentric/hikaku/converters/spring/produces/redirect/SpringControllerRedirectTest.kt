@@ -3,13 +3,14 @@ package de.codecentric.hikaku.converters.spring.produces.redirect
 import de.codecentric.hikaku.converters.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
-import org.assertj.core.api.Assertions.assertThat
+import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
-import kotlin.test.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
+import kotlin.test.Test
 
 class SpringControllerRedirectTest {
 
@@ -26,19 +27,24 @@ class SpringControllerRedirectTest {
             val specification: Set<Endpoint> = setOf(
                 Endpoint("/todos", GET, produces = emptySet()),
                 Endpoint("/todos", HEAD, produces = emptySet()),
-                Endpoint("/todos", OPTIONS, produces = emptySet())
+                Endpoint("/todos", OPTIONS, produces = emptySet()),
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 
     @Nested
-    @WebMvcTest(RedirectUsingHttpServletResponseTestController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    @WebMvcTest(
+        RedirectUsingHttpServletResponseTestController::class,
+        excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class]
+    )
     inner class RedirectUsingHttpServletResponseTest {
 
         @Autowired
@@ -50,14 +56,16 @@ class SpringControllerRedirectTest {
             val specification: Set<Endpoint> = setOf(
                 Endpoint("/todos", GET, produces = emptySet()),
                 Endpoint("/todos", HEAD, produces = emptySet()),
-                Endpoint("/todos", OPTIONS, produces = emptySet())
+                Endpoint("/todos", OPTIONS, produces = emptySet()),
             )
 
             //when
-            val implementation = SpringConverter(context)
+            val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            implementation mustSatisfy {
+                it containsExactly specification
+            }
         }
     }
 }
