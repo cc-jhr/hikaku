@@ -1,7 +1,15 @@
 version: 2
+registries:
+  nagare:
+    type: maven-repository
+    url: https://maven.pkg.github.com/cc-jhr/nagare
+    username: cc-jhr
+    password: ${{secrets.GH_PACKAGES_READ_TOKEN}}
 updates:
   - package-ecosystem: "gradle"
     directory: "/"
+    registries:
+      - nagare
     schedule:
       interval: "daily"
     open-pull-requests-limit: 15
