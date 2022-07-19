@@ -9,6 +9,7 @@ val moduleName = "hikaku-spring"
 val githubUsername: String by rootProject.extra
 val githubReleaseToken: String by rootProject.extra
 val springBootVersion = "2.7.1"
+version = rootProject.version
 
 dependencies {
   implementation(platform(kotlin("bom")))

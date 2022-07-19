@@ -8,6 +8,7 @@ plugins {
 val moduleName = "hikaku-micronaut"
 val githubUsername: String by rootProject.extra
 val githubReleaseToken: String by rootProject.extra
+version = rootProject.version
 
 dependencies {
   implementation(platform(kotlin("bom")))
