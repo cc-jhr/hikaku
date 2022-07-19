@@ -15,7 +15,7 @@ dependencies {
   api(kotlin("stdlib-jdk8"))
   api(kotlin("reflect"))
   api(kotlin("test"))
-  api("org.springframework:spring-webmvc:5.3.21")
+  api("org.springframework:spring-webmvc:5.3.22")
   api(project(":core"))
 
   testImplementation(kotlin("test"))
