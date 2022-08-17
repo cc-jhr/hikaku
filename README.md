@@ -57,8 +57,8 @@ Here is an example for OpenAPI as specification and Spring as implementation.
 
 ```gradle
 dependencies {
-    testImplementation "de.codecentric.hikaku:hikaku-openapi:$hikakuVersion"
-    testImplementation "de.codecentric.hikaku:hikaku-spring:$hikakuVersion"
+    testImplementation "io.github.ccjhr.hikaku:hikaku-openapi:$hikakuVersion"
+    testImplementation "io.github.ccjhr.hikaku:hikaku-spring:$hikakuVersion"
 }
 ```
 
