@@ -19,7 +19,7 @@ dependencies {
 
   testImplementation(kotlin("test"))
   testImplementation("org.junit.platform:junit-platform-launcher:1.9.1")
-  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.0")
+  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.1")
   testImplementation("io.github.ccjhr:nagare:3.0.0")
 }
 
