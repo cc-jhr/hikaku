@@ -1,11 +1,9 @@
 package de.codecentric.hikaku.converters.micronaut
 
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.*
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.boolean.`is`
-import io.github.ccjhr.collection.CollectionAssertionAdjective.Empty
 import io.github.ccjhr.collection.containsExactly
-import io.github.ccjhr.collection.`is`
 import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
 import kotlin.test.Test

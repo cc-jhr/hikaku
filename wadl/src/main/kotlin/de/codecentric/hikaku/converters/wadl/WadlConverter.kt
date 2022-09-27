@@ -1,12 +1,12 @@
 package de.codecentric.hikaku.converters.wadl
 
-import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.SupportedFeatures.Feature
-import de.codecentric.hikaku.converters.AbstractEndpointConverter
-import de.codecentric.hikaku.converters.EndpointConverterException
+import io.github.ccjhr.hikaku.SupportedFeatures
+import io.github.ccjhr.hikaku.SupportedFeatures.Feature
+import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
+import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.converters.wadl.extensions.getAttribute
-import de.codecentric.hikaku.endpoints.*
-import de.codecentric.hikaku.extensions.checkFileValidity
+import io.github.ccjhr.hikaku.endpoints.*
+import io.github.ccjhr.hikaku.extensions.checkFileValidity
 import org.w3c.dom.Node
 import org.w3c.dom.NodeList
 import org.xml.sax.InputSource

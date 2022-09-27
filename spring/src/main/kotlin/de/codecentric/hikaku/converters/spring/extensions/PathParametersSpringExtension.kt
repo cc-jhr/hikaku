@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.spring.extensions
 
-import de.codecentric.hikaku.endpoints.PathParameter
+import io.github.ccjhr.hikaku.endpoints.PathParameter
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.method.HandlerMethod
 import kotlin.reflect.KParameter

@@ -1,15 +1,15 @@
 
 package de.codecentric.hikaku.converters.spring.path
 
-import de.codecentric.hikaku.Hikaku
-import de.codecentric.hikaku.HikakuConfig
-import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.converters.EndpointConverter
+import io.github.ccjhr.hikaku.Hikaku
+import io.github.ccjhr.hikaku.HikakuConfig
+import io.github.ccjhr.hikaku.SupportedFeatures
+import io.github.ccjhr.hikaku.converters.EndpointConverter
 import de.codecentric.hikaku.converters.spring.SpringConverter
 import de.codecentric.hikaku.converters.spring.SpringConverter.Companion.IGNORE_ERROR_ENDPOINT
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.*
-import de.codecentric.hikaku.endpoints.PathParameter
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
+import io.github.ccjhr.hikaku.endpoints.PathParameter
 import io.github.ccjhr.Experimental
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy

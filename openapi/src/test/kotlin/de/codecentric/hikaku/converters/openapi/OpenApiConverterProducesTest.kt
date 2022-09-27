@@ -1,8 +1,8 @@
 package de.codecentric.hikaku.converters.openapi
 
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.DELETE
-import de.codecentric.hikaku.endpoints.HttpMethod.GET
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.DELETE
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import kotlin.io.path.toPath

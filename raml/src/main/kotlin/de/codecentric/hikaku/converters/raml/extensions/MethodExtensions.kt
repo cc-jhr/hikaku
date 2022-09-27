@@ -1,8 +1,8 @@
 package de.codecentric.hikaku.converters.raml.extensions
 
-import de.codecentric.hikaku.endpoints.HeaderParameter
-import de.codecentric.hikaku.endpoints.HttpMethod
-import de.codecentric.hikaku.endpoints.QueryParameter
+import io.github.ccjhr.hikaku.endpoints.HeaderParameter
+import io.github.ccjhr.hikaku.endpoints.HttpMethod
+import io.github.ccjhr.hikaku.endpoints.QueryParameter
 import org.raml.v2.api.model.v10.methods.Method
 
 internal fun Method.hikakuHttpMethod() = HttpMethod.valueOf(this.method().uppercase())

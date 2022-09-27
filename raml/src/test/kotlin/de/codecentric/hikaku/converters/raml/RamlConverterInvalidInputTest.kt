@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.raml
 
-import de.codecentric.hikaku.converters.EndpointConverterException
+import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.string.contains
 import io.github.ccjhr.throwable.expectsException

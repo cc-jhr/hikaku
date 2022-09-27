@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.spring.extensions
 
-import de.codecentric.hikaku.endpoints.HeaderParameter
+import io.github.ccjhr.hikaku.endpoints.HeaderParameter
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.ValueConstants
 import org.springframework.web.method.HandlerMethod

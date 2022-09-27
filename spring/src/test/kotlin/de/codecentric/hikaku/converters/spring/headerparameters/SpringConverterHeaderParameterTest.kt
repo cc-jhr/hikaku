@@ -1,9 +1,9 @@
 package de.codecentric.hikaku.converters.spring.headerparameters
 
 import de.codecentric.hikaku.converters.spring.SpringConverter
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HeaderParameter
-import de.codecentric.hikaku.endpoints.HttpMethod.*
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HeaderParameter
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.throwable.expectsException

@@ -1,7 +1,7 @@
 package de.codecentric.hikaku.converters.wadl
 
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.*
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import kotlin.test.Test

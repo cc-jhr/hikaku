@@ -1,12 +1,12 @@
 package de.codecentric.hikaku.converters.micronaut
 
-import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.SupportedFeatures.Feature
-import de.codecentric.hikaku.converters.AbstractEndpointConverter
-import de.codecentric.hikaku.converters.ClassLocator
-import de.codecentric.hikaku.converters.EndpointConverterException
-import de.codecentric.hikaku.endpoints.*
-import de.codecentric.hikaku.extensions.isUnit
+import io.github.ccjhr.hikaku.SupportedFeatures
+import io.github.ccjhr.hikaku.SupportedFeatures.Feature
+import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
+import io.github.ccjhr.hikaku.converters.ClassLocator
+import io.github.ccjhr.hikaku.converters.EndpointConverterException
+import io.github.ccjhr.hikaku.extensions.isUnit
+import io.github.ccjhr.hikaku.endpoints.*
 import io.micronaut.http.annotation.*
 import java.lang.reflect.Method
 import kotlin.reflect.full.findAnnotation

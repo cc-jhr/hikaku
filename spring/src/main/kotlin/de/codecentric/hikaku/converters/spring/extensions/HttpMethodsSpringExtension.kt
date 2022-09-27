@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.spring.extensions
 
-import de.codecentric.hikaku.endpoints.HttpMethod
+import io.github.ccjhr.hikaku.endpoints.HttpMethod
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
 

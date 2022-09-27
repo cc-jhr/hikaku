@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.wadl
 
-import de.codecentric.hikaku.endpoints.PathParameter
+import io.github.ccjhr.hikaku.endpoints.PathParameter
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import kotlin.test.Test

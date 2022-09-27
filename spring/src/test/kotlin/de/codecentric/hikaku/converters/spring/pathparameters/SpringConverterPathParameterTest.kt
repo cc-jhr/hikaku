@@ -1,9 +1,9 @@
 package de.codecentric.hikaku.converters.spring.pathparameters
 
 import de.codecentric.hikaku.converters.spring.SpringConverter
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.*
-import de.codecentric.hikaku.endpoints.PathParameter
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
+import io.github.ccjhr.hikaku.endpoints.PathParameter
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.throwable.expectsException

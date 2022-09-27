@@ -1,8 +1,8 @@
 package de.codecentric.hikaku.converters.raml
 
-import de.codecentric.hikaku.converters.EndpointConverterException
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.GET
+import io.github.ccjhr.hikaku.converters.EndpointConverterException
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.string.contains

@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.wadl
 
-import de.codecentric.hikaku.converters.EndpointConverterException
+import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.throwable.expectsException
 import io.github.ccjhr.throwable.hasMessage

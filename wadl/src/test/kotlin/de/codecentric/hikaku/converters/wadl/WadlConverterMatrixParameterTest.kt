@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.wadl
 
-import de.codecentric.hikaku.endpoints.MatrixParameter
+import io.github.ccjhr.hikaku.endpoints.MatrixParameter
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import kotlin.test.Test

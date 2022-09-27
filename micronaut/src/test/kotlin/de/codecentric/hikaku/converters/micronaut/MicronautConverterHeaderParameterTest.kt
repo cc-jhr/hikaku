@@ -1,8 +1,8 @@
 package de.codecentric.hikaku.converters.micronaut
 
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HeaderParameter
-import de.codecentric.hikaku.endpoints.HttpMethod.GET
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HeaderParameter
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import kotlin.test.Test

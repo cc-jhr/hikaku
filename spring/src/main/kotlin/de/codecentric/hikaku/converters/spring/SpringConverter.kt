@@ -1,12 +1,12 @@
 package de.codecentric.hikaku.converters.spring
 
-import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.SupportedFeatures.Feature
-import de.codecentric.hikaku.converters.AbstractEndpointConverter
+import io.github.ccjhr.hikaku.SupportedFeatures
+import io.github.ccjhr.hikaku.SupportedFeatures.Feature
+import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.spring.extensions.*
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod
-import de.codecentric.hikaku.endpoints.HttpMethod.*
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import org.springframework.context.ApplicationContext
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo

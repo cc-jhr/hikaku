@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.openapi
 
-import de.codecentric.hikaku.endpoints.QueryParameter
+import io.github.ccjhr.hikaku.endpoints.QueryParameter
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import kotlin.io.path.toPath

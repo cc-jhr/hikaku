@@ -1,14 +1,14 @@
 package de.codecentric.hikaku.converters.openapi
 
-import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.SupportedFeatures.Feature
-import de.codecentric.hikaku.converters.AbstractEndpointConverter
-import de.codecentric.hikaku.converters.EndpointConverterException
+import io.github.ccjhr.hikaku.SupportedFeatures
+import io.github.ccjhr.hikaku.SupportedFeatures.Feature
+import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
+import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.converters.openapi.extensions.httpMethods
 import de.codecentric.hikaku.converters.openapi.extractors.*
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod
-import de.codecentric.hikaku.extensions.checkFileValidity
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod
+import io.github.ccjhr.hikaku.extensions.checkFileValidity
 import io.swagger.v3.oas.models.Operation
 import io.swagger.v3.parser.OpenAPIV3Parser
 import java.io.File

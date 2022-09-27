@@ -1,7 +1,7 @@
 package de.codecentric.hikaku.converters.spring.extensions
 
-import de.codecentric.hikaku.extensions.isString
-import de.codecentric.hikaku.extensions.isUnit
+import io.github.ccjhr.hikaku.extensions.isString
+import io.github.ccjhr.hikaku.extensions.isUnit
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.http.MediaType.TEXT_PLAIN_VALUE
 import org.springframework.web.bind.annotation.ResponseBody

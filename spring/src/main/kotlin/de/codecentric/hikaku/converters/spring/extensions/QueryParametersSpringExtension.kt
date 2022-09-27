@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.spring.extensions
 
-import de.codecentric.hikaku.endpoints.QueryParameter
+import io.github.ccjhr.hikaku.endpoints.QueryParameter
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ValueConstants
 import org.springframework.web.method.HandlerMethod

@@ -1,7 +1,7 @@
 package de.codecentric.hikaku.converters.openapi.extractors
 
 import de.codecentric.hikaku.converters.openapi.extensions.referencedSchema
-import de.codecentric.hikaku.endpoints.PathParameter
+import io.github.ccjhr.hikaku.endpoints.PathParameter
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.parameters.PathParameter as OpenApiPathParameter
 import io.swagger.v3.oas.models.parameters.Parameter as OpenApiParameter

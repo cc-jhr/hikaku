@@ -1,11 +1,9 @@
 package de.codecentric.hikaku.converters.raml
 
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.*
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.boolean.`is`
-import io.github.ccjhr.collection.CollectionAssertionAdjective.Empty
 import io.github.ccjhr.collection.containsExactly
-import io.github.ccjhr.collection.`is`
 import io.github.ccjhr.mustSatisfy
 import kotlin.io.path.toPath
 import kotlin.test.Test
