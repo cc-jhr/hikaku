@@ -13,7 +13,8 @@ open class DummyApp
 open class HeaderParameterNamedByVariableController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader allowCache: Boolean) { }
+    fun getAllTodos(@RequestHeader allowCache: Boolean) {
+    }
 }
 
 @Controller
@@ -21,7 +22,8 @@ open class HeaderParameterNamedByVariableController {
 open class HeaderParameterNamedByValueAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(value = "allow-cache") variable: Boolean) { }
+    fun getAllTodos(@RequestHeader(value = "allow-cache") variable: Boolean) {
+    }
 }
 
 @Controller
@@ -29,7 +31,8 @@ open class HeaderParameterNamedByValueAttributeController {
 open class HeaderParameterNamedByNameAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(name = "allow-cache") variable: Boolean) { }
+    fun getAllTodos(@RequestHeader(name = "allow-cache") variable: Boolean) {
+    }
 }
 
 @Controller
@@ -37,7 +40,8 @@ open class HeaderParameterNamedByNameAttributeController {
 open class HeaderParameterHavingBothNameAndValueAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(value="valueAttribute", name = "nameAttribute") variable: String) { }
+    fun getAllTodos(@RequestHeader(value = "valueAttribute", name = "nameAttribute") variable: String) {
+    }
 }
 
 @Controller
@@ -45,7 +49,8 @@ open class HeaderParameterHavingBothNameAndValueAttributeController {
 open class HeaderParameterOptionalController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(name = "allow-cache", required = false) variable: Boolean) { }
+    fun getAllTodos(@RequestHeader(name = "allow-cache", required = false) variable: Boolean) {
+    }
 }
 
 @Controller
@@ -53,7 +58,8 @@ open class HeaderParameterOptionalController {
 open class HeaderParameterOptionalBecauseOfDefaultValueController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(name = "tracker-id", defaultValue = "unknown") variable: Boolean) { }
+    fun getAllTodos(@RequestHeader(name = "tracker-id", defaultValue = "unknown") variable: Boolean) {
+    }
 }
 
 
@@ -62,5 +68,6 @@ open class HeaderParameterOptionalBecauseOfDefaultValueController {
 open class HeaderParameterOnDefaultErrorEndpointController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(value = "allow-cache") variable: Boolean) { }
+    fun getAllTodos(@RequestHeader(value = "allow-cache") variable: Boolean) {
+    }
 }

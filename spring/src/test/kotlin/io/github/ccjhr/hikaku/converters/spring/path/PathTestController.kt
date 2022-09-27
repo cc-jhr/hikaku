@@ -13,7 +13,8 @@ open class DummyApp
 open class RequestMappingOnClassWithMultiplePathsController {
 
     @RequestMapping
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -21,7 +22,8 @@ open class RequestMappingOnClassWithMultiplePathsController {
 open class RequestMappingIgnoreErrorPathController {
 
     @RequestMapping
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -30,7 +32,8 @@ open class RequestMappingIgnoreErrorPathController {
 open class RequestMappingOnClassProvidingRegexForPathVariableController {
 
     @RequestMapping
-    fun todo(@PathVariable(name = "id") variable: Int) { }
+    fun todo(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
@@ -39,7 +42,8 @@ open class RequestMappingOnClassProvidingRegexForPathVariableController {
 open class RequestMappingOnClassProvidingComplexRegexForPathVariableController {
 
     @RequestMapping
-    fun todo(@PathVariable(name = "id") variable: Int) { }
+    fun todo(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
@@ -47,14 +51,16 @@ open class RequestMappingOnClassProvidingComplexRegexForPathVariableController {
 open class RequestMappingOnClassProvidingMultipleRegexForPathVariableController {
 
     @RequestMapping("/todos/{id:[0-9]+}/{title:[a-z]*}", method = [GET])
-    fun todo(@PathVariable(name = "id",) variable: Int, @PathVariable(name = "title") title: String) { }
+    fun todo(@PathVariable(name = "id") variable: Int, @PathVariable(name = "title") title: String) {
+    }
 }
 
 @Controller
 open class RequestMappingOnFunctionWithMultiplePathsController {
 
     @RequestMapping("/todos", "/todo/list", method = [GET])
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -62,7 +68,8 @@ open class RequestMappingOnFunctionWithMultiplePathsController {
 open class RequestMappingOnFunctionProvidingRegexForPathVariableController {
 
     @RequestMapping("/todos/{id:[0-9]+}", method = [GET])
-    fun todo(@PathVariable(name = "id") variable: Int) { }
+    fun todo(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
@@ -70,7 +77,8 @@ open class RequestMappingOnFunctionProvidingRegexForPathVariableController {
 open class RequestMappingOnFunctionProvidingComplexRegexForPathVariableController {
 
     @RequestMapping("/todos/{id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}", method = [GET])
-    fun todo(@PathVariable(name = "id") variable: Int) { }
+    fun todo(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
@@ -78,14 +86,16 @@ open class RequestMappingOnFunctionProvidingComplexRegexForPathVariableControlle
 open class RequestMappingOnFunctionProvidingMultipleRegexForPathVariableController {
 
     @RequestMapping("/todos/{id:[0-9]+}/{title:[a-z]*}", method = [GET])
-    fun todo(@PathVariable(name = "id") variable: Int, @PathVariable(name = "title") title: String) { }
+    fun todo(@PathVariable(name = "id") variable: Int, @PathVariable(name = "title") title: String) {
+    }
 }
 
 @Controller
 open class GetMappingOnFunctionWithMultiplePathsController {
 
     @GetMapping("/todos", "/todo/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -93,14 +103,16 @@ open class GetMappingOnFunctionWithMultiplePathsController {
 open class GetMappingProvidingRegexForPathVariableController {
 
     @GetMapping("/todos/{id:[0-9]+}")
-    fun todo(@PathVariable(name = "id") variable: Int) { }
+    fun todo(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
 open class DeleteMappingOnFunctionWithMultiplePathsController {
 
     @DeleteMapping("/todos", "/todo/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -108,14 +120,16 @@ open class DeleteMappingOnFunctionWithMultiplePathsController {
 open class DeleteMappingProvidingRegexForPathVariableController {
 
     @DeleteMapping("/todos/{id:[0-9]+}")
-    fun todo(@PathVariable(name = "id") variable: Int) { }
+    fun todo(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
 open class PatchMappingOnFunctionWithMultiplePathsController {
 
     @PatchMapping("/todos", "/todo/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -123,14 +137,16 @@ open class PatchMappingOnFunctionWithMultiplePathsController {
 open class PatchMappingProvidingRegexForPathVariableController {
 
     @PatchMapping("/todos/{id:[0-9]+}")
-    fun todo(@PathVariable(name = "id") variable: Int) { }
+    fun todo(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
 open class PostMappingOnFunctionWithMultiplePathsController {
 
     @PostMapping("/todos", "/todo/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -138,14 +154,16 @@ open class PostMappingOnFunctionWithMultiplePathsController {
 open class PostMappingProvidingRegexForPathVariableController {
 
     @PostMapping("/todos/{id:[0-9]+}")
-    fun todo(@PathVariable(name = "id") variable: Int) { }
+    fun todo(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
 open class PutMappingOnFunctionWithMultiplePathsController {
 
     @PutMapping("/todos", "/todo/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -153,7 +171,8 @@ open class PutMappingOnFunctionWithMultiplePathsController {
 open class PutMappingProvidingRegexForPathVariableController {
 
     @PutMapping("/todos/{id:[0-9]+}")
-    fun todo(@PathVariable(name = "id") variable: Int) { }
+    fun todo(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
@@ -161,7 +180,8 @@ open class PutMappingProvidingRegexForPathVariableController {
 open class RequestMappingNestedPathController {
 
     @RequestMapping("/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -169,7 +189,8 @@ open class RequestMappingNestedPathController {
 open class GetMappingNestedPathController {
 
     @GetMapping("/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -177,7 +198,8 @@ open class GetMappingNestedPathController {
 open class DeleteMappingNestedPathController {
 
     @DeleteMapping("/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -185,7 +207,8 @@ open class DeleteMappingNestedPathController {
 open class PatchMappingNestedPathController {
 
     @PatchMapping("/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -193,7 +216,8 @@ open class PatchMappingNestedPathController {
 open class PostMappingNestedPathController {
 
     @PostMapping("/list")
-    fun todo() { }
+    fun todo() {
+    }
 }
 
 @Controller
@@ -201,5 +225,6 @@ open class PostMappingNestedPathController {
 open class PutMappingNestedPathController {
 
     @PutMapping("/list")
-    fun todo() { }
+    fun todo() {
+    }
 }

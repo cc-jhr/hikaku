@@ -7,5 +7,6 @@ import io.micronaut.http.annotation.Get
 class NoDeprecation {
 
     @Get
-    fun todo() { }
+    fun todo() {
+    }
 }

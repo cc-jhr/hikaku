@@ -1,9 +1,9 @@
 package io.github.ccjhr.hikaku.converters.spring.deprecation
 
+import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.hikaku.converters.spring.SpringConverter
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
-import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
 import org.springframework.beans.factory.annotation.Autowired

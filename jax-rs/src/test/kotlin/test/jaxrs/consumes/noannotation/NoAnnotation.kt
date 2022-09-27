@@ -10,5 +10,6 @@ data class Todo(val description: String = "")
 class NoAnnotation {
 
     @GET
-    fun todo(todo: Todo) { }
+    fun todo(todo: Todo) {
+    }
 }

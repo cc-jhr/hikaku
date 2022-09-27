@@ -7,5 +7,6 @@ import io.micronaut.http.annotation.Get
 class OnlyControllerAnnotationWithGetPathTestController {
 
     @Get
-    fun todos() { }
+    fun todos() {
+    }
 }

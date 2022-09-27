@@ -16,5 +16,5 @@ data class Endpoint(
     val matrixParameters: Set<MatrixParameter> = emptySet(),
     val produces: Set<String> = emptySet(),
     val consumes: Set<String> = emptySet(),
-    val deprecated: Boolean = false
+    val deprecated: Boolean = false,
 )

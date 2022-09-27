@@ -11,9 +11,9 @@ internal fun HandlerMethod.hikakuMatrixParameters(): Set<MatrixParameter> {
     val method = this.method.kotlinFunction ?: return emptySet()
 
     return method.parameters
-            .filter { it.annotations.filterIsInstance<MatrixVariable>().any() }
-            .map { extractMatrixParameter(it) }
-            .toSet()
+        .filter { it.annotations.filterIsInstance<MatrixVariable>().any() }
+        .map { extractMatrixParameter(it) }
+        .toSet()
 }
 
 private fun extractMatrixParameter(it: KParameter): MatrixParameter {

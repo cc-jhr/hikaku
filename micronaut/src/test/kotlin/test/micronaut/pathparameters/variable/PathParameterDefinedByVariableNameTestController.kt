@@ -8,5 +8,6 @@ import io.micronaut.http.annotation.Get
 class PathParameterDefinedByVariableNameTestController {
 
     @Get
-    fun todos(id: String) { }
+    fun todos(id: String) {
+    }
 }

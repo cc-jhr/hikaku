@@ -81,15 +81,15 @@ class SpecificationTest {
     private lateinit var springContext: ApplicationContext
 
     @Test
-    fun `specification matches implementation`() {
+    fun `specification matches implementation`() { 
         Hikaku(
-                specification = OpenApiConverter(Paths.get("openapi.yaml")),
-                implementation = SpringConverter(springContext),
-                config = HikakuConfig(
-                        filters = listOf(SpringConverter.IGNORE_ERROR_ENDPOINT)
-                )
-        )
-        .match()
+            specification = OpenApiConverter(Paths.get("openapi.yaml")),
+            implementation = SpringConverter(springContext),
+            config = HikakuConfig(
+                filters = listOf(SpringConverter.IGNORE_ERROR_ENDPOINT),
+            ),
+      )
+      .match()
     }
 }
 ```
@@ -114,12 +114,12 @@ public class SpecificationTest {
     reporters.add(new CommandLineReporter());
 
     new Hikaku(
-            new OpenApiConverter(Paths.get("openapi.json")),
-            new SpringConverter(springContext),
-            new HikakuConfig(
-                    reporters,
-                    filters
-            )
+        new OpenApiConverter(Paths.get("openapi.json")),
+        new SpringConverter(springContext),
+        new HikakuConfig(
+            reporters,
+            filters
+        )
     )
     .match();
   }

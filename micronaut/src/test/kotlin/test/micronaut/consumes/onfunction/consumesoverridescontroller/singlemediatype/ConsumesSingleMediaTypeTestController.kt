@@ -13,5 +13,6 @@ class ConsumesSingleMediaTypeTestController {
 
     @Post
     @Consumes("application/xml")
-    fun todos(@Body todo: Todo) { }
+    fun todos(@Body todo: Todo) {
+    }
 }

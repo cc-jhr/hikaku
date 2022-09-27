@@ -7,5 +7,6 @@ import io.micronaut.http.annotation.Put
 class OnlyControllerAnnotationWithPutPathTestController {
 
     @Put
-    fun todos() { }
+    fun todos() {
+    }
 }

@@ -1,9 +1,9 @@
 package io.github.ccjhr.hikaku.converters.raml
 
+import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET
-import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.string.contains
 import io.github.ccjhr.throwable.expectsException

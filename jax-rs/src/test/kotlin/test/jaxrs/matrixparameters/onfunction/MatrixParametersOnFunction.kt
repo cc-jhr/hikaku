@@ -9,5 +9,6 @@ import jakarta.ws.rs.Path
 class MatrixParameterOnFunction {
 
     @GET
-    fun todo(@MatrixParam("tag") tag: String) { }
+    fun todo(@MatrixParam("tag") tag: String) {
+    }
 }

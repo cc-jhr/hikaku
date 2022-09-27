@@ -13,7 +13,8 @@ open class DummyApp
 open class MatrixParameterNamedByVariableController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@MatrixVariable tag: Boolean) { }
+    fun getAllTodos(@MatrixVariable tag: Boolean) {
+    }
 }
 
 @Controller
@@ -21,7 +22,8 @@ open class MatrixParameterNamedByVariableController {
 open class MatrixParameterNamedByValueAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@MatrixVariable(value = "tag") variable: Boolean) { }
+    fun getAllTodos(@MatrixVariable(value = "tag") variable: Boolean) {
+    }
 }
 
 @Controller
@@ -29,7 +31,8 @@ open class MatrixParameterNamedByValueAttributeController {
 open class MatrixParameterNamedByNameAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@MatrixVariable(name = "tag") variable: Boolean) { }
+    fun getAllTodos(@MatrixVariable(name = "tag") variable: Boolean) {
+    }
 }
 
 @Controller
@@ -37,7 +40,8 @@ open class MatrixParameterNamedByNameAttributeController {
 open class MatrixParameterHavingBothNameAndValueAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@MatrixVariable(value="valueAttribute", name = "nameAttribute") variable: String) { }
+    fun getAllTodos(@MatrixVariable(value = "valueAttribute", name = "nameAttribute") variable: String) {
+    }
 }
 
 @Controller
@@ -45,7 +49,8 @@ open class MatrixParameterHavingBothNameAndValueAttributeController {
 open class MatrixParameterOptionalController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@MatrixVariable(name = "tag", required = false) variable: Boolean) { }
+    fun getAllTodos(@MatrixVariable(name = "tag", required = false) variable: Boolean) {
+    }
 }
 
 @Controller
@@ -53,7 +58,8 @@ open class MatrixParameterOptionalController {
 open class MatrixParameterOptionalBecauseOfDefaultValueController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@MatrixVariable(name = "tag", defaultValue = "unknown") variable: Boolean) { }
+    fun getAllTodos(@MatrixVariable(name = "tag", defaultValue = "unknown") variable: Boolean) {
+    }
 }
 
 
@@ -62,5 +68,6 @@ open class MatrixParameterOptionalBecauseOfDefaultValueController {
 open class MatrixParameterOnDefaultErrorEndpointController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@MatrixVariable(value = "tag") variable: Boolean) { }
+    fun getAllTodos(@MatrixVariable(value = "tag") variable: Boolean) {
+    }
 }

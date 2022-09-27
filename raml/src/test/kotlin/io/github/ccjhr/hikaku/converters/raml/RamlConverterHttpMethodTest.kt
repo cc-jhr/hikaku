@@ -1,9 +1,9 @@
 package io.github.ccjhr.hikaku.converters.raml
 
-import io.github.ccjhr.hikaku.endpoints.Endpoint
-import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.boolean.`is`
 import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.hikaku.endpoints.Endpoint
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.mustSatisfy
 import kotlin.io.path.toPath
 import kotlin.test.Test

@@ -14,29 +14,29 @@ internal class QueryParameterExtractor(private val openApi: OpenAPI) {
 
     private fun extractInlineQueryParameters(parameters: List<OpenApiParameter>?): Set<QueryParameter> {
         return parameters
-                ?.filterIsInstance<OpenApiQueryParameter>()
-                ?.map { QueryParameter(it.name, it.required) }
-                .orEmpty()
-                .toSet()
+            ?.filterIsInstance<OpenApiQueryParameter>()
+            ?.map { QueryParameter(it.name, it.required) }
+            .orEmpty()
+            .toSet()
     }
 
     private fun extractQueryParametersFromComponents(parameters: List<OpenApiParameter>?): Set<QueryParameter> {
         return parameters
-                ?.filter { it.referencedSchema != null }
-                ?.map {
-                    Regex("#/components/parameters/(?<key>.+)")
-                            .find(it.referencedSchema)
-                            ?.groups
-                            ?.get("key")
-                            ?.value
-                }
-                ?.map {
-                    openApi.components
-                            .parameters[it]
-                }
-                ?.filter { it?.`in` == "query" }
-                ?.map { QueryParameter(it?.name ?: "", it?.required ?: false) }
-                .orEmpty()
-                .toSet()
+            ?.filter { it.referencedSchema != null }
+            ?.map {
+                Regex("#/components/parameters/(?<key>.+)")
+                    .find(it.referencedSchema)
+                    ?.groups
+                    ?.get("key")
+                    ?.value
+            }
+            ?.map {
+                openApi.components
+                    .parameters[it]
+            }
+            ?.filter { it?.`in` == "query" }
+            ?.map { QueryParameter(it?.name ?: "", it?.required ?: false) }
+            .orEmpty()
+            .toSet()
     }
 }

@@ -12,5 +12,6 @@ class MultipleMediaTypesOnFunction {
 
     @GET
     @Consumes("application/json", "application/xml")
-    fun todo(todo: Todo) { }
+    fun todo(todo: Todo) {
+    }
 }

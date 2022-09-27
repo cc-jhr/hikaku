@@ -13,5 +13,5 @@ import io.github.ccjhr.hikaku.reporters.Reporter
 data class HikakuConfig
 @JvmOverloads constructor(
     val reporters: List<Reporter> = listOf(CommandLineReporter()),
-    val filters: List<(Endpoint) -> Boolean> = emptyList()
+    val filters: List<(Endpoint) -> Boolean> = emptyList(),
 )

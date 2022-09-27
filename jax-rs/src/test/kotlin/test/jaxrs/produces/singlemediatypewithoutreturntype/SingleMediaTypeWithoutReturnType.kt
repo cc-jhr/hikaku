@@ -9,5 +9,6 @@ class SingleMediaTypeWithoutReturnType {
 
     @GET
     @Produces("application/json")
-    fun todo() { }
+    fun todo() {
+    }
 }

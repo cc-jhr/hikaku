@@ -9,5 +9,6 @@ import jakarta.ws.rs.QueryParam
 class QueryParameterOnFunction {
 
     @GET
-    fun todo(@QueryParam("filter") filter: String) { }
+    fun todo(@QueryParam("filter") filter: String) {
+    }
 }

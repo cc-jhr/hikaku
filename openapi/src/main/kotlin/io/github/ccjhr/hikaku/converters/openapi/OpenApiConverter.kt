@@ -5,11 +5,7 @@ import io.github.ccjhr.hikaku.SupportedFeatures.Feature
 import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import io.github.ccjhr.hikaku.converters.openapi.extensions.httpMethods
-import io.github.ccjhr.hikaku.converters.openapi.extractors.ConsumesExtractor
-import io.github.ccjhr.hikaku.converters.openapi.extractors.HeaderParameterExtractor
-import io.github.ccjhr.hikaku.converters.openapi.extractors.PathParameterExtractor
-import io.github.ccjhr.hikaku.converters.openapi.extractors.ProducesExtractor
-import io.github.ccjhr.hikaku.converters.openapi.extractors.QueryParameterExtractor
+import io.github.ccjhr.hikaku.converters.openapi.extractors.*
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod
 import io.github.ccjhr.hikaku.extensions.checkFileValidity
@@ -27,17 +23,23 @@ import java.nio.file.Path
 class OpenApiConverter private constructor(private val specificationContent: String) : AbstractEndpointConverter() {
 
     @JvmOverloads
-    constructor(openApiSpecification: File, charset: Charset = UTF_8): this(openApiSpecification.toPath(), charset)
+    constructor(openApiSpecification: File, charset: Charset = UTF_8) : this(openApiSpecification.toPath(), charset)
+
     @JvmOverloads
-    constructor(openApiSpecification: Path, charset: Charset = UTF_8): this(readFileContent(openApiSpecification, charset))
+    constructor(openApiSpecification: Path, charset: Charset = UTF_8) : this(
+        readFileContent(
+            openApiSpecification,
+            charset
+        )
+    )
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameters,
-            Feature.PathParameters,
-            Feature.HeaderParameters,
-            Feature.Produces,
-            Feature.Consumes,
-            Feature.Deprecation
+        Feature.QueryParameters,
+        Feature.PathParameters,
+        Feature.HeaderParameters,
+        Feature.Produces,
+        Feature.Consumes,
+        Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {
@@ -66,18 +68,18 @@ class OpenApiConverter private constructor(private val specificationContent: Str
 
             pathItem.httpMethods().map { (httpMethod: HttpMethod, operation: Operation?) ->
                 Endpoint(
-                        path = path,
-                        httpMethod = httpMethod,
-                        queryParameters = commonQueryParameters.union(extractQueryParameters(operation?.parameters)),
-                        pathParameters = commonPathParameters.union(extractPathParameters(operation?.parameters)),
-                        headerParameters = commonHeaderParameters.union(extractHeaderParameters(operation?.parameters)),
-                        consumes = extractConsumesMediaTypes(operation),
-                        produces = extractProduceMediaTypes(operation),
-                        deprecated = operation?.deprecated ?: false
+                    path = path,
+                    httpMethod = httpMethod,
+                    queryParameters = commonQueryParameters.union(extractQueryParameters(operation?.parameters)),
+                    pathParameters = commonPathParameters.union(extractPathParameters(operation?.parameters)),
+                    headerParameters = commonHeaderParameters.union(extractHeaderParameters(operation?.parameters)),
+                    consumes = extractConsumesMediaTypes(operation),
+                    produces = extractProduceMediaTypes(operation),
+                    deprecated = operation?.deprecated ?: false
                 )
             }
         }
-        .toSet()
+            .toSet()
     }
 }
 
@@ -96,5 +98,5 @@ private fun readFileContent(openApiSpecification: Path, charset: Charset): Strin
     return fileContent
 }
 
-private fun openApiParseException(reasons: List<String>)
-    = EndpointConverterException("Failed to parse OpenAPI spec. Reasons:\n${reasons.joinToString("\n")}")
+private fun openApiParseException(reasons: List<String>) =
+    EndpointConverterException("Failed to parse OpenAPI spec. Reasons:\n${reasons.joinToString("\n")}")

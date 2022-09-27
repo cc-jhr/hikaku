@@ -16,7 +16,7 @@ import kotlin.test.fail
 class Hikaku(
     private val specification: EndpointConverter,
     private val implementation: EndpointConverter,
-    var config: HikakuConfig = HikakuConfig()
+    var config: HikakuConfig = HikakuConfig(),
 ) {
     private val supportedFeatures = SupportedFeatures(specification.supportedFeatures.intersect(implementation.supportedFeatures))
 
@@ -39,14 +39,14 @@ class Hikaku(
      */
     fun match() {
         val specificationEndpoints = specification
-                .conversionResult
-                .applyConfig(config)
-                .toSet()
+            .conversionResult
+            .applyConfig(config)
+            .toSet()
 
         val implementationEndpoints = implementation
-                .conversionResult
-                .applyConfig(config)
-                .toSet()
+            .conversionResult
+            .applyConfig(config)
+            .toSet()
 
         val notExpected = implementationEndpoints.toMutableSet()
         val notFound = specificationEndpoints.toMutableSet()
@@ -59,13 +59,13 @@ class Hikaku(
         }
 
         reportResult(
-                MatchResult(
-                        supportedFeatures,
-                        specificationEndpoints,
-                        implementationEndpoints,
-                        notFound,
-                        notExpected
-                )
+            MatchResult(
+                supportedFeatures,
+                specificationEndpoints,
+                implementationEndpoints,
+                notFound,
+                notExpected
+            )
         )
 
         if (notExpected.isNotEmpty() || notFound.isNotEmpty()) {
@@ -82,7 +82,7 @@ class Hikaku(
             supportedFeatures.forEach { feature ->
                 matches = when (feature) {
                     Feature.QueryParameters -> matches && it.queryParameters == otherEndpoint.queryParameters
-                    Feature.PathParameters -> matches && it.pathParameters ==  otherEndpoint.pathParameters
+                    Feature.PathParameters -> matches && it.pathParameters == otherEndpoint.pathParameters
                     Feature.HeaderParameters -> matches && it.headerParameters == otherEndpoint.headerParameters
                     Feature.MatrixParameters -> matches && it.matrixParameters == otherEndpoint.matrixParameters
                     Feature.Produces -> matches && it.produces == otherEndpoint.produces

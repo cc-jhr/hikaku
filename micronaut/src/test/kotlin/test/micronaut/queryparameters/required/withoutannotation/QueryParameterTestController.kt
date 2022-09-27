@@ -8,5 +8,6 @@ import io.micronaut.http.annotation.Get
 class QueryParameterTestController {
 
     @Get
-    fun todos(filter: String) { }
+    fun todos(filter: String) {
+    }
 }

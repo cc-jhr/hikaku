@@ -1,6 +1,7 @@
-
 package io.github.ccjhr.hikaku.converters.spring.path
 
+import io.github.ccjhr.Experimental
+import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.hikaku.Hikaku
 import io.github.ccjhr.hikaku.HikakuConfig
 import io.github.ccjhr.hikaku.SupportedFeatures
@@ -10,8 +11,6 @@ import io.github.ccjhr.hikaku.converters.spring.SpringConverter.Companion.IGNORE
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.hikaku.endpoints.PathParameter
-import io.github.ccjhr.Experimental
-import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.throwable.noExceptionThrown
 import org.junit.jupiter.api.Nested

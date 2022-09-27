@@ -5,5 +5,5 @@ import io.micronaut.http.annotation.Controller
 @Controller("/todos")
 class NoHttpMethodAnnotationTestController {
 
-    fun todos() { }
+    fun todos() {}
 }

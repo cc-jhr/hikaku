@@ -8,5 +8,6 @@ class NestedPath {
 
     @GET
     @Path("list")
-    fun todo() { }
+    fun todo() {
+    }
 }

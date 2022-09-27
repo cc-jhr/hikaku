@@ -8,5 +8,6 @@ class DeprecationOnFunction {
 
     @Get
     @Deprecated("Test")
-    fun todo() { }
+    fun todo() {
+    }
 }

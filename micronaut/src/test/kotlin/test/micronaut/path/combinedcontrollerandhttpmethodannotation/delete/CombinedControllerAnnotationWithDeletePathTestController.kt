@@ -7,5 +7,6 @@ import io.micronaut.http.annotation.Delete
 class CombinedControllerAnnotationWithDeletePathTestController {
 
     @Delete("/list")
-    fun todos() { }
+    fun todos() {
+    }
 }

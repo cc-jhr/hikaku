@@ -59,7 +59,8 @@ open class RequestMappingWithoutProducesOnClassInfoAndStringAsResponseBodyValueC
 open class RequestMappingOnClassNoProducesInfoAndNoReturnTypeController {
 
     @RequestMapping
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @RestController
@@ -73,7 +74,8 @@ open class RequestMappingOneMediaTypeIsExtractedCorrectlyController {
 open class RequestMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreExtractedCorrectlyController())
+    fun getAllTodos() =
+        ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @RestController
@@ -95,7 +97,8 @@ open class RequestMappingWithoutProducesOnFunctionInfoAndStringAsResponseBodyVal
 open class RequestMappingOnFunctionNoProducesInfoAndNoReturnTypeController {
 
     @RequestMapping
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @RestController
@@ -130,7 +133,8 @@ open class GetMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 open class GetMappingNoProducesInfoAndNoReturnTypeController {
 
     @GetMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @RestController
@@ -144,7 +148,8 @@ open class DeleteMappingOneMediaTypeIsExtractedCorrectlyController {
 open class DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @DeleteMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController())
+    fun getAllTodos() =
+        ResponseEntity.status(200).body(DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @RestController
@@ -165,7 +170,8 @@ open class DeleteMappingWithoutProducesInfoAndStringAsResponseBodyValueControlle
 open class DeleteMappingNoProducesInfoAndNoReturnTypeController {
 
     @DeleteMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @RestController
@@ -200,7 +206,8 @@ open class PatchMappingWithoutProducesInfoAndStringAsResponseBodyValueController
 open class PatchMappingNoProducesInfoAndNoReturnTypeController {
 
     @PatchMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @RestController
@@ -235,7 +242,8 @@ open class PostMappingWithoutProducesInfoAndStringAsResponseBodyValueController 
 open class PostMappingNoProducesInfoAndNoReturnTypeController {
 
     @PostMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @RestController
@@ -270,7 +278,8 @@ open class PutMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 open class PutMappingNoProducesInfoAndNoReturnTypeController {
 
     @PutMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @RestController

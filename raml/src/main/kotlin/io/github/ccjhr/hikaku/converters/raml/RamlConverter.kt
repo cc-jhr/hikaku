@@ -5,10 +5,6 @@ import io.github.ccjhr.hikaku.SupportedFeatures.Feature
 import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import io.github.ccjhr.hikaku.converters.raml.extensions.*
-import io.github.ccjhr.hikaku.converters.raml.extensions.hikakuHeaderParameters
-import io.github.ccjhr.hikaku.converters.raml.extensions.hikakuHttpMethod
-import io.github.ccjhr.hikaku.converters.raml.extensions.hikakuQueryParameters
-import io.github.ccjhr.hikaku.converters.raml.extensions.requestMediaTypes
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.extensions.checkFileValidity
 import org.raml.v2.api.RamlModelBuilder
@@ -17,17 +13,17 @@ import org.raml.v2.api.model.v10.resources.Resource
 import java.io.File
 import java.nio.file.Path
 
-class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConverter()  {
+class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConverter() {
 
     constructor(ramlSpecification: Path) : this(ramlSpecification.toFile())
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameters,
-            Feature.PathParameters,
-            Feature.HeaderParameters,
-            Feature.Produces,
-            Feature.Consumes,
-            Feature.Deprecation
+        Feature.QueryParameters,
+        Feature.PathParameters,
+        Feature.HeaderParameters,
+        Feature.Produces,
+        Feature.Consumes,
+        Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {
@@ -36,7 +32,7 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
         try {
             ramlSpecification.checkFileValidity(".raml")
             ramlParserResult = RamlModelBuilder().buildApi(ramlSpecification)
-        } catch(throwable: Throwable) {
+        } catch (throwable: Throwable) {
             throw EndpointConverterException(throwable)
         }
 
@@ -51,8 +47,8 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
         return ramlParserResult.apiV10?.resources()?.let { resourceList ->
             resourceList.flatMap { findEndpoints(it) }
         }
-        .orEmpty()
-        .toSet()
+            .orEmpty()
+            .toSet()
     }
 
     private fun findEndpoints(resource: Resource): List<Endpoint> {
@@ -66,16 +62,16 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
 
         if (resource.methods().isNotEmpty()) {
             endpoints += resource.methods().map {
-                    Endpoint(
-                            path = resource.resourcePath(),
-                            httpMethod = it.hikakuHttpMethod(),
-                            queryParameters = it.hikakuQueryParameters(),
-                            pathParameters = it.resource()?.hikakuPathParameters().orEmpty(),
-                            headerParameters = it?.hikakuHeaderParameters().orEmpty(),
-                            consumes = it.requestMediaTypes(),
-                            produces = it.responseMediaTypes(),
-                            deprecated = it.isEndpointDeprecated()
-                    )
+                Endpoint(
+                    path = resource.resourcePath(),
+                    httpMethod = it.hikakuHttpMethod(),
+                    queryParameters = it.hikakuQueryParameters(),
+                    pathParameters = it.resource()?.hikakuPathParameters().orEmpty(),
+                    headerParameters = it?.hikakuHeaderParameters().orEmpty(),
+                    consumes = it.requestMediaTypes(),
+                    produces = it.responseMediaTypes(),
+                    deprecated = it.isEndpointDeprecated()
+                )
             }
         }
 

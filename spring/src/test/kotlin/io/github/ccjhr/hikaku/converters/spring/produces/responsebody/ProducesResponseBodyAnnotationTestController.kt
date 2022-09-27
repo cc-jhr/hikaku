@@ -64,7 +64,8 @@ open class RequestMappingWithoutProducesOnClassInfoAndStringAsResponseBodyValueC
 open class RequestMappingOnClassWithoutResponseBodyAnnotationController {
 
     @RequestMapping
-    fun getAllTodos() { }
+    fun getAllTodos() {
+    }
 }
 
 @RestController
@@ -72,7 +73,8 @@ open class RequestMappingOnClassWithoutResponseBodyAnnotationController {
 open class RequestMappingOnClassNoProducesInfoAndNoReturnTypeController {
 
     @RequestMapping
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @Controller
@@ -88,7 +90,8 @@ open class RequestMappingOneMediaTypeIsExtractedCorrectlyController {
 open class RequestMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreExtractedCorrectlyController())
+    fun getAllTodos() =
+        ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @Controller
@@ -111,7 +114,8 @@ open class RequestMappingWithoutProducesOnFunctionInfoAndStringAsResponseBodyVal
 open class RequestMappingOnFunctionWithoutResponseBodyAnnotationController {
 
     @RequestMapping("/todos")
-    fun getAllTodos() { }
+    fun getAllTodos() {
+    }
 }
 
 @RestController
@@ -119,7 +123,8 @@ open class RequestMappingOnFunctionWithoutResponseBodyAnnotationController {
 open class RequestMappingOnFunctionNoProducesInfoAndNoReturnTypeController {
 
     @RequestMapping
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @Controller
@@ -158,14 +163,16 @@ open class GetMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 open class GetMappingWithoutResponseBodyAnnotationController {
 
     @GetMapping("/todos")
-    fun getAllTodos() { }
+    fun getAllTodos() {
+    }
 }
 
 @RestController
 open class GetMappingNoProducesInfoAndNoReturnTypeController {
 
     @GetMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @Controller
@@ -181,7 +188,8 @@ open class DeleteMappingOneMediaTypeIsExtractedCorrectlyController {
 open class DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @DeleteMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController())
+    fun getAllTodos() =
+        ResponseEntity.status(200).body(DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @Controller
@@ -204,14 +212,16 @@ open class DeleteMappingWithoutProducesInfoAndStringAsResponseBodyValueControlle
 open class DeleteMappingWithoutResponseBodyAnnotationController {
 
     @DeleteMapping("/todos")
-    fun getAllTodos() { }
+    fun getAllTodos() {
+    }
 }
 
 @RestController
 open class DeleteMappingNoProducesInfoAndNoReturnTypeController {
 
     @DeleteMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @Controller
@@ -250,14 +260,16 @@ open class PatchMappingWithoutProducesInfoAndStringAsResponseBodyValueController
 open class PatchMappingWithoutResponseBodyAnnotationController {
 
     @PatchMapping("/todos")
-    fun getAllTodos() { }
+    fun getAllTodos() {
+    }
 }
 
 @RestController
 open class PatchMappingNoProducesInfoAndNoReturnTypeController {
 
     @PatchMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @Controller
@@ -288,7 +300,8 @@ open class PostMappingDefaultValueController {
 open class PostMappingWithoutResponseBodyAnnotationController {
 
     @PostMapping("/todos")
-    fun getAllTodos() { }
+    fun getAllTodos() {
+    }
 }
 
 @Controller
@@ -303,7 +316,8 @@ open class PostMappingWithoutProducesInfoAndStringAsResponseBodyValueController 
 open class PostMappingNoProducesInfoAndNoReturnTypeController {
 
     @PostMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @Controller
@@ -342,14 +356,16 @@ open class PutMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 open class PutMappingWithoutResponseBodyAnnotationController {
 
     @PutMapping("/todos")
-    fun getAllTodos() { }
+    fun getAllTodos() {
+    }
 }
 
 @RestController
 open class PutMappingNoProducesInfoAndNoReturnTypeController {
 
     @PutMapping("/todos")
-    fun todos() { }
+    fun todos() {
+    }
 }
 
 @Controller

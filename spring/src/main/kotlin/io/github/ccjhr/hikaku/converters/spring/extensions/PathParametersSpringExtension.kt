@@ -10,9 +10,9 @@ internal fun HandlerMethod.hikakuPathParameters(): Set<PathParameter> {
     val method = this.method.kotlinFunction ?: return emptySet()
 
     return method.parameters
-            .filter { it.annotations.filterIsInstance<PathVariable>().any() }
-            .map { extractPathParameter(it) }
-            .toSet()
+        .filter { it.annotations.filterIsInstance<PathVariable>().any() }
+        .map { extractPathParameter(it) }
+        .toSet()
 }
 
 private fun extractPathParameter(it: KParameter): PathParameter {

@@ -5,8 +5,8 @@ import io.github.ccjhr.hikaku.SupportedFeatures.Feature
 import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
 import io.github.ccjhr.hikaku.converters.ClassLocator
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
-import io.github.ccjhr.hikaku.extensions.isUnit
 import io.github.ccjhr.hikaku.endpoints.*
+import io.github.ccjhr.hikaku.extensions.isUnit
 import io.micronaut.http.annotation.*
 import java.lang.reflect.Method
 import kotlin.reflect.full.findAnnotation
@@ -29,15 +29,15 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
         }
 
         return ClassLocator.getClasses(packageName)
-                .filter { it.getAnnotation(Controller::class.java) != null }
-                .flatMap { extractEndpoints(it) }
-                .toSet()
+            .filter { it.getAnnotation(Controller::class.java) != null }
+            .flatMap { extractEndpoints(it) }
+            .toSet()
     }
 
     private fun extractEndpoints(resource: Class<*>): List<Endpoint> {
         return resource.methods
-                .filter { isHttpMethodAnnotationPresent(it) }
-                .map { createEndpoint(resource, it) }
+            .filter { isHttpMethodAnnotationPresent(it) }
+            .map { createEndpoint(resource, it) }
     }
 
     private fun isHttpMethodAnnotationPresent(method: Method): Boolean {
@@ -57,14 +57,14 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
         val path = extractPath(resource, method)
 
         return Endpoint(
-                path = path,
-                httpMethod = extractHttpMethod(method),
-                queryParameters = extractQueryParameters(path, method),
-                pathParameters = extractPathParameters(path, method),
-                headerParameters = extractHeaderParameters(method),
-                consumes = extractConsumes(resource, method),
-                produces = extractProduces(resource, method),
-                deprecated = isEndpointDeprecated(method)
+            path = path,
+            httpMethod = extractHttpMethod(method),
+            queryParameters = extractQueryParameters(path, method),
+            pathParameters = extractPathParameters(path, method),
+            headerParameters = extractHeaderParameters(method),
+            consumes = extractConsumes(resource, method),
+            produces = extractProduces(resource, method),
+            deprecated = isEndpointDeprecated(method)
         )
     }
 
@@ -76,28 +76,28 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
         }
 
         val mediaTypesOnFunction = method.kotlinFunction
-                ?.annotations
-                ?.filterIsInstance<Produces>()
-                ?.flatMap { it.value.map { entry -> entry } }
-                ?.toSet()
-                .orEmpty()
+            ?.annotations
+            ?.filterIsInstance<Produces>()
+            ?.flatMap { it.value.map { entry -> entry } }
+            ?.toSet()
+            .orEmpty()
 
         if (mediaTypesOnFunction.isNotEmpty()) {
             return mediaTypesOnFunction
         }
 
         val mediaTypesOnControllerByConsumesAnnotation = resource.getAnnotation(Produces::class.java)
-                ?.value
-                ?.toSet()
-                .orEmpty()
+            ?.value
+            ?.toSet()
+            .orEmpty()
 
         if (mediaTypesOnControllerByConsumesAnnotation.isNotEmpty()) {
             return mediaTypesOnControllerByConsumesAnnotation
         }
 
         val mediaTypesDefinedByControllerAnnotation = resource.getAnnotation(Controller::class.java)
-                .produces
-                .toSet()
+            .produces
+            .toSet()
 
         if (mediaTypesDefinedByControllerAnnotation.isNotEmpty()) {
             return mediaTypesDefinedByControllerAnnotation
@@ -108,37 +108,37 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
 
     private fun extractConsumes(resource: Class<*>, method: Method): Set<String> {
         val methodAwaitsPayload = method.kotlinFunction
-                ?.parameters
-                ?.any { it.findAnnotation<Body>() != null }
-                ?: false
+            ?.parameters
+            ?.any { it.findAnnotation<Body>() != null }
+            ?: false
 
         if (!methodAwaitsPayload) {
             return emptySet()
         }
 
         val mediaTypesOnFunction = method.kotlinFunction
-                ?.annotations
-                ?.filterIsInstance<Consumes>()
-                ?.flatMap { it.value.map { entry -> entry } }
-                ?.toSet()
-                .orEmpty()
+            ?.annotations
+            ?.filterIsInstance<Consumes>()
+            ?.flatMap { it.value.map { entry -> entry } }
+            ?.toSet()
+            .orEmpty()
 
         if (mediaTypesOnFunction.isNotEmpty()) {
             return mediaTypesOnFunction
         }
 
         val mediaTypesOnControllerByConsumesAnnotation = resource.getAnnotation(Consumes::class.java)
-                ?.value
-                ?.toSet()
-                .orEmpty()
+            ?.value
+            ?.toSet()
+            .orEmpty()
 
         if (mediaTypesOnControllerByConsumesAnnotation.isNotEmpty()) {
             return mediaTypesOnControllerByConsumesAnnotation
         }
 
         val mediaTypesDefinedByControllerAnnotation = resource.getAnnotation(Controller::class.java)
-                .consumes
-                .toSet()
+            .consumes
+            .toSet()
 
         if (mediaTypesDefinedByControllerAnnotation.isNotEmpty()) {
             return mediaTypesDefinedByControllerAnnotation
@@ -188,14 +188,15 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
 
     private fun extractQueryParameters(path: String, method: Method): Set<QueryParameter> {
         val queryParameters = method.parameters
-                .filter { it.isAnnotationPresent(QueryValue::class.java) }
-                .map { it.getAnnotation(QueryValue::class.java) }
-                .map { it as QueryValue }
-                .map { QueryParameter(it.value, it.defaultValue.isBlank()) }
-                .toMutableSet()
+            .filter { it.isAnnotationPresent(QueryValue::class.java) }
+            .map { it.getAnnotation(QueryValue::class.java) }
+            .map { it as QueryValue }
+            .map { QueryParameter(it.value, it.defaultValue.isBlank()) }
+            .toMutableSet()
 
 
-        val queryParameterWithoutAnnotation = methodParametersWithoutAnnotation(method).filterNot { templatesInPath(path).contains(it) }
+        val queryParameterWithoutAnnotation =
+            methodParametersWithoutAnnotation(method).filterNot { templatesInPath(path).contains(it) }
                 .filterNotNull()
                 .map { QueryParameter(it, false) }
                 .toSet()
@@ -207,23 +208,23 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
 
     private fun extractPathParameters(path: String, method: Method): Set<PathParameter> {
         val parameters = method.parameters
-                .filter { it.isAnnotationPresent(PathVariable::class.java) }
-                .map { it.getAnnotation(PathVariable::class.java) as PathVariable }
-                .map {
-                    val pathParameter = if (it.value.isNotBlank()) {
-                        it.value
-                    } else {
-                        it.name
-                    }
-
-                    PathParameter(pathParameter)
+            .filter { it.isAnnotationPresent(PathVariable::class.java) }
+            .map { it.getAnnotation(PathVariable::class.java) as PathVariable }
+            .map {
+                val pathParameter = if (it.value.isNotBlank()) {
+                    it.value
+                } else {
+                    it.name
                 }
-                .toMutableSet()
+
+                PathParameter(pathParameter)
+            }
+            .toMutableSet()
 
         val pathParametersWithoutAnnotation = templatesInPath(path)
-                .filter { methodParametersWithoutAnnotation(method).contains(it) }
-                .map { PathParameter(it) }
-                .toSet()
+            .filter { methodParametersWithoutAnnotation(method).contains(it) }
+            .map { PathParameter(it) }
+            .toSet()
 
         parameters.addAll(pathParametersWithoutAnnotation)
 
@@ -244,14 +245,14 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
 
     private fun extractHeaderParameters(method: Method): Set<HeaderParameter> {
         return method.parameters
-                .filter { it.isAnnotationPresent(Header::class.java) }
-                .map { it.getAnnotation(Header::class.java) }
-                .map { it as Header }
-                .map { HeaderParameter(it.value, it.defaultValue.isBlank()) }
-                .toSet()
+            .filter { it.isAnnotationPresent(Header::class.java) }
+            .map { it.getAnnotation(Header::class.java) }
+            .map { it as Header }
+            .map { HeaderParameter(it.value, it.defaultValue.isBlank()) }
+            .toSet()
     }
 
     private fun isEndpointDeprecated(method: Method) =
-            method.isAnnotationPresent(Deprecated::class.java)
-                    || method.declaringClass.isAnnotationPresent(Deprecated::class.java)
+        method.isAnnotationPresent(Deprecated::class.java)
+                || method.declaringClass.isAnnotationPresent(Deprecated::class.java)
 }

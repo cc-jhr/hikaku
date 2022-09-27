@@ -11,9 +11,9 @@ internal fun HandlerMethod.hikakuHeaderParameters(): Set<HeaderParameter> {
     val method = this.method.kotlinFunction ?: return emptySet()
 
     return method.parameters
-            .filter { it.annotations.filterIsInstance<RequestHeader>().any() }
-            .map { extractHeaderParameter(it) }
-            .toSet()
+        .filter { it.annotations.filterIsInstance<RequestHeader>().any() }
+        .map { extractHeaderParameter(it) }
+        .toSet()
 }
 
 private fun extractHeaderParameter(it: KParameter): HeaderParameter {

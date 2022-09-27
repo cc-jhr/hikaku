@@ -9,34 +9,34 @@ internal fun Method.hikakuHttpMethod() = HttpMethod.valueOf(this.method().upperc
 
 internal fun Method.hikakuQueryParameters(): Set<QueryParameter> {
     return this.queryParameters()
-            .map {
-                QueryParameter(it.name(), it.required())
-            }
-            .toSet()
+        .map {
+            QueryParameter(it.name(), it.required())
+        }
+        .toSet()
 }
 
 internal fun Method.hikakuHeaderParameters(): Set<HeaderParameter> {
     return this.headers()
-            .map {
-                HeaderParameter(it.name(), it.required())
-            }
-            .toSet()
+        .map {
+            HeaderParameter(it.name(), it.required())
+        }
+        .toSet()
 }
 
 internal fun Method.requestMediaTypes(): Set<String> {
     return this.body().map {
         it.name()
     }
-    .toSet()
+        .toSet()
 }
 
 internal fun Method.responseMediaTypes(): Set<String> {
-    return this.responses().flatMap {response ->
+    return this.responses().flatMap { response ->
         response.body().map { it.name() }
     }
-            .toSet()
+        .toSet()
 }
 
 internal fun Method.isEndpointDeprecated() =
-        this.annotations().any { i -> i.annotation().name() == "deprecated" }
-                || checkNotNull(this.resource()).annotations().any { i -> i.annotation().name() == "deprecated" }
+    this.annotations().any { i -> i.annotation().name() == "deprecated" }
+            || checkNotNull(this.resource()).annotations().any { i -> i.annotation().name() == "deprecated" }

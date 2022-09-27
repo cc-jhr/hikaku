@@ -37,14 +37,13 @@ object ClassLocator {
             return classes
         }
 
-        Files.list(directory)
-                .forEach {
-                    if (Files.isDirectory(it)) {
-                        classes.addAll(findClasses(it, "$packageName.${it.fileName}"))
-                    } else if (it.extension() == "class") {
-                        classes.add(Class.forName("$packageName.${it.nameWithoutExtension()}"))
-                    }
-                }
+        Files.list(directory).forEach {
+            if (Files.isDirectory(it)) {
+                classes.addAll(findClasses(it, "$packageName.${it.fileName}"))
+            } else if (it.extension() == "class") {
+                classes.add(Class.forName("$packageName.${it.nameWithoutExtension()}"))
+            }
+        }
 
         return classes
     }

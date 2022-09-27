@@ -60,7 +60,7 @@ class OpenApiConverterInvalidInputTest {
 
             // then
             result.message mustSatisfy {
-                it contains  "Failed to parse OpenAPI spec."
+                it contains "Failed to parse OpenAPI spec."
             }
         }
     }

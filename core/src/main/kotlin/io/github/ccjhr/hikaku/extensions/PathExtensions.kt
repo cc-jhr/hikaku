@@ -12,8 +12,8 @@ fun Path.checkFileValidity(vararg extensions: String) {
     require(Files.isRegularFile(this)) { "Given file is not a regular file." }
 
     if (extensions.isNotEmpty()) {
-        extensions.map {it.substringAfter('.') }
-                .filter { this.extension() == it }
-                .ifEmpty { throw IllegalArgumentException("Given file is not of type ${extensions.joinToString()}") }
+        extensions.map { it.substringAfter('.') }
+            .filter { this.extension() == it }
+            .ifEmpty { throw IllegalArgumentException("Given file is not of type ${extensions.joinToString()}") }
     }
 }

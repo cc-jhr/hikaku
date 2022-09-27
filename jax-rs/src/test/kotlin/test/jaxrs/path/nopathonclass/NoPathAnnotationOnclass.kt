@@ -7,5 +7,6 @@ class NoPathAnnotationOnclass {
 
     @GET
     @Path("/todos")
-    fun todo() { }
+    fun todo() {
+    }
 }

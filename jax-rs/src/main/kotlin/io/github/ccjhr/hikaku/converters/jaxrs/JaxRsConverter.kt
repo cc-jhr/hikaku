@@ -14,13 +14,13 @@ import java.lang.reflect.Method
 class JaxRsConverter(private val packageName: String) : AbstractEndpointConverter() {
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameters,
-            Feature.PathParameters,
-            Feature.HeaderParameters,
-            Feature.MatrixParameters,
-            Feature.Consumes,
-            Feature.Produces,
-            Feature.Deprecation
+        Feature.QueryParameters,
+        Feature.PathParameters,
+        Feature.HeaderParameters,
+        Feature.MatrixParameters,
+        Feature.Consumes,
+        Feature.Produces,
+        Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {
@@ -29,15 +29,15 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
         }
 
         return ClassLocator.getClasses(packageName)
-                .filter { it.getAnnotation(Path::class.java) != null }
-                .flatMap { extractEndpoints(it) }
-                .toSet()
+            .filter { it.getAnnotation(Path::class.java) != null }
+            .flatMap { extractEndpoints(it) }
+            .toSet()
     }
 
     private fun extractEndpoints(resource: Class<*>): List<Endpoint> {
         return resource.methods
-                .filter { isHttpMethodAnnotationPresent(it) }
-                .map { createEndpoint(resource, it) }
+            .filter { isHttpMethodAnnotationPresent(it) }
+            .map { createEndpoint(resource, it) }
     }
 
     private fun isHttpMethodAnnotationPresent(method: Method): Boolean {
@@ -54,15 +54,15 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
     }
 
     private fun createEndpoint(resource: Class<*>, method: Method) = Endpoint(
-            path = extractPath(resource, method),
-            httpMethod = extractHttpMethod(method),
-            pathParameters = extractPathParameters(method),
-            queryParameters = extractQueryParameters(method),
-            headerParameters = extractHeaderParameters(method),
-            matrixParameters = extractMatrixParameters(method),
-            produces = extractProduces(resource, method),
-            consumes = extractConsumes(resource, method),
-            deprecated = isEndpointDeprecated(method)
+        path = extractPath(resource, method),
+        httpMethod = extractHttpMethod(method),
+        pathParameters = extractPathParameters(method),
+        queryParameters = extractQueryParameters(method),
+        headerParameters = extractHeaderParameters(method),
+        matrixParameters = extractMatrixParameters(method),
+        produces = extractProduces(resource, method),
+        consumes = extractConsumes(resource, method),
+        deprecated = isEndpointDeprecated(method)
     )
 
     private fun extractPath(resource: Class<*>, method: Method): String {
@@ -129,55 +129,55 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
 
     private fun containsRequestBody(method: Method): Boolean {
         return method.parameters
-                .filterNot { it.isAnnotationPresent(BeanParam::class.java) }
-                .filterNot { it.isAnnotationPresent(CookieParam::class.java) }
-                .filterNot { it.isAnnotationPresent(DefaultValue::class.java) }
-                .filterNot { it.isAnnotationPresent(Encoded::class.java) }
-                .filterNot { it.isAnnotationPresent(FormParam::class.java) }
-                .filterNot { it.isAnnotationPresent(HeaderParam::class.java) }
-                .filterNot { it.isAnnotationPresent(MatrixParam::class.java) }
-                .filterNot { it.isAnnotationPresent(PathParam::class.java) }
-                .filterNot { it.isAnnotationPresent(QueryParam::class.java) }
-                .isNotEmpty()
+            .filterNot { it.isAnnotationPresent(BeanParam::class.java) }
+            .filterNot { it.isAnnotationPresent(CookieParam::class.java) }
+            .filterNot { it.isAnnotationPresent(DefaultValue::class.java) }
+            .filterNot { it.isAnnotationPresent(Encoded::class.java) }
+            .filterNot { it.isAnnotationPresent(FormParam::class.java) }
+            .filterNot { it.isAnnotationPresent(HeaderParam::class.java) }
+            .filterNot { it.isAnnotationPresent(MatrixParam::class.java) }
+            .filterNot { it.isAnnotationPresent(PathParam::class.java) }
+            .filterNot { it.isAnnotationPresent(QueryParam::class.java) }
+            .isNotEmpty()
     }
 
     private fun extractQueryParameters(method: Method): Set<QueryParameter> {
         return method.parameters
-                .filter { it.isAnnotationPresent(QueryParam::class.java) }
-                .map { it.getAnnotation(QueryParam::class.java) }
-                .map { (it as QueryParam).value }
-                .map { QueryParameter(it, false) }
-                .toSet()
+            .filter { it.isAnnotationPresent(QueryParam::class.java) }
+            .map { it.getAnnotation(QueryParam::class.java) }
+            .map { (it as QueryParam).value }
+            .map { QueryParameter(it, false) }
+            .toSet()
     }
 
     private fun extractPathParameters(method: Method): Set<PathParameter> {
         return method.parameters
-                .filter { it.isAnnotationPresent(PathParam::class.java) }
-                .map { it.getAnnotation(PathParam::class.java) }
-                .map { (it as PathParam).value }
-                .map { PathParameter(it) }
-                .toSet()
+            .filter { it.isAnnotationPresent(PathParam::class.java) }
+            .map { it.getAnnotation(PathParam::class.java) }
+            .map { (it as PathParam).value }
+            .map { PathParameter(it) }
+            .toSet()
     }
 
     private fun extractHeaderParameters(method: Method): Set<HeaderParameter> {
         return method.parameters
-                .filter { it.isAnnotationPresent(HeaderParam::class.java) }
-                .map { it.getAnnotation(HeaderParam::class.java) }
-                .map { (it as HeaderParam).value }
-                .map { HeaderParameter(it) }
-                .toSet()
+            .filter { it.isAnnotationPresent(HeaderParam::class.java) }
+            .map { it.getAnnotation(HeaderParam::class.java) }
+            .map { (it as HeaderParam).value }
+            .map { HeaderParameter(it) }
+            .toSet()
     }
 
     private fun extractMatrixParameters(method: Method): Set<MatrixParameter> {
         return method.parameters
-                .filter { it.isAnnotationPresent(MatrixParam::class.java) }
-                .map { it.getAnnotation(MatrixParam::class.java) }
-                .map { (it as MatrixParam).value }
-                .map { MatrixParameter(it) }
-                .toSet()
+            .filter { it.isAnnotationPresent(MatrixParam::class.java) }
+            .map { it.getAnnotation(MatrixParam::class.java) }
+            .map { (it as MatrixParam).value }
+            .map { MatrixParameter(it) }
+            .toSet()
     }
 
     private fun isEndpointDeprecated(method: Method) =
-            method.isAnnotationPresent(Deprecated::class.java)
-                    || method.declaringClass.isAnnotationPresent(Deprecated::class.java)
+        method.isAnnotationPresent(Deprecated::class.java)
+                || method.declaringClass.isAnnotationPresent(Deprecated::class.java)
 }

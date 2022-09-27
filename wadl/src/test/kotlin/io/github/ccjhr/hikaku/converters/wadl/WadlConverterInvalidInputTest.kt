@@ -23,7 +23,7 @@ class WadlConverterInvalidInputTest {
             val result = expectsException<EndpointConverterException> {
                 WadlConverter(file).conversionResult
             }
-            
+
             // then
             result mustSatisfy {
                 it hasMessage "Given WADL is blank."

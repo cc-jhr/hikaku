@@ -12,5 +12,6 @@ class ProducesOnFunction {
 
     @GET
     @Consumes("application/json")
-    fun todo(todo: Todo) { }
+    fun todo(todo: Todo) {
+    }
 }

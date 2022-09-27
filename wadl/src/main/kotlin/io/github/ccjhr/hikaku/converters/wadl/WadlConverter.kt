@@ -26,22 +26,23 @@ import javax.xml.xpath.XPathFactory
 class WadlConverter private constructor(private val wadl: String) : AbstractEndpointConverter() {
 
     @JvmOverloads
-    constructor(wadlFile: File, charset: Charset = UTF_8): this(wadlFile.toPath(), charset)
+    constructor(wadlFile: File, charset: Charset = UTF_8) : this(wadlFile.toPath(), charset)
+
     @JvmOverloads
-    constructor(wadlFile: Path, charset: Charset = UTF_8): this(readFileContent(wadlFile, charset))
+    constructor(wadlFile: Path, charset: Charset = UTF_8) : this(readFileContent(wadlFile, charset))
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameters,
-            Feature.HeaderParameters,
-            Feature.PathParameters,
-            Feature.MatrixParameters,
-            Feature.Produces,
-            Feature.Consumes
+        Feature.QueryParameters,
+        Feature.HeaderParameters,
+        Feature.PathParameters,
+        Feature.MatrixParameters,
+        Feature.Produces,
+        Feature.Consumes
     )
 
     private val xPath = XPathFactory
-            .newInstance()
-            .newXPath()
+        .newInstance()
+        .newXPath()
 
     override fun convert(): Set<Endpoint> {
         try {
@@ -53,9 +54,9 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
 
     private fun parseWadl(): Set<Endpoint> {
         val doc = DocumentBuilderFactory
-                .newInstance()
-                .newDocumentBuilder()
-                .parse(InputSource(StringReader(wadl)))
+            .newInstance()
+            .newDocumentBuilder()
+            .parse(InputSource(StringReader(wadl)))
 
         val resources = xPath.evaluate("//resource", doc, NODESET) as NodeList
 
@@ -71,7 +72,8 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
     private fun createEndpoints(resourceElement: Node): Set<Endpoint> {
         val path = resourceElement.getAttribute("path")
 
-        val methods = xPath.evaluate("//resource[@path=\"$path\"]//method", resourceElement.childNodes, NODESET) as NodeList
+        val methods =
+            xPath.evaluate("//resource[@path=\"$path\"]//method", resourceElement.childNodes, NODESET) as NodeList
         val endpoints: MutableSet<Endpoint> = mutableSetOf()
 
         for (i in 0 until methods.length) {
@@ -79,16 +81,16 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
             val httpMethod = HttpMethod.valueOf(method.getAttribute("name"))
 
             endpoints.add(
-                    Endpoint(
-                            path = path,
-                            httpMethod = httpMethod,
-                            queryParameters = extractQueryParameters(method),
-                            headerParameters = extractHeaderParameters(method),
-                            pathParameters = extractPathParameters(method),
-                            matrixParameters = extractMatrixParameters(method),
-                            produces = extractResponseMediaTypes(method),
-                            consumes = extractConsumesMediaTypes(method)
-                    )
+                Endpoint(
+                    path = path,
+                    httpMethod = httpMethod,
+                    queryParameters = extractQueryParameters(method),
+                    headerParameters = extractHeaderParameters(method),
+                    pathParameters = extractPathParameters(method),
+                    matrixParameters = extractMatrixParameters(method),
+                    produces = extractResponseMediaTypes(method),
+                    consumes = extractConsumesMediaTypes(method)
+                )
             )
         }
 
@@ -113,30 +115,30 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
 
     private fun extractPathParameters(method: Node): Set<PathParameter> {
         return extractParameter(method, "template")
-                .entries
-                .map { PathParameter(it.key) }
-                .toSet()
+            .entries
+            .map { PathParameter(it.key) }
+            .toSet()
     }
 
     private fun extractQueryParameters(method: Node): Set<QueryParameter> {
         return extractParameter(method, "query")
-                .entries
-                .map { QueryParameter(it.key, it.value) }
-                .toSet()
+            .entries
+            .map { QueryParameter(it.key, it.value) }
+            .toSet()
     }
 
     private fun extractHeaderParameters(method: Node): Set<HeaderParameter> {
         return extractParameter(method, "header")
-                .entries
-                .map { HeaderParameter(it.key, it.value) }
-                .toSet()
+            .entries
+            .map { HeaderParameter(it.key, it.value) }
+            .toSet()
     }
 
     private fun extractMatrixParameters(method: Node): Set<MatrixParameter> {
         return extractParameter(method, "matrix")
-                .entries
-                .map { MatrixParameter(it.key, it.value) }
-                .toSet()
+            .entries
+            .map { MatrixParameter(it.key, it.value) }
+            .toSet()
     }
 
     private fun extractParameter(method: Node, style: String): Map<String, Boolean> {
@@ -162,11 +164,11 @@ private fun readFileContent(wadlFile: Path, charset: Charset): String {
         wadlFile.checkFileValidity(".wadl")
 
         Files.readAllLines(wadlFile, charset)
-                .map { line ->
-                    fileContentBuilder
-                            .append(line)
-                            .append("\n")
-                }
+            .map { line ->
+                fileContentBuilder
+                    .append(line)
+                    .append("\n")
+            }
     } catch (throwable: Throwable) {
         throw EndpointConverterException(throwable)
     }

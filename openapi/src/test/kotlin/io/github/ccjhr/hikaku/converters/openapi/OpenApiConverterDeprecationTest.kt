@@ -1,11 +1,11 @@
 package io.github.ccjhr.hikaku.converters.openapi
 
+import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET
-import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
-import kotlin.test.Test
 import java.nio.file.Paths
+import kotlin.test.Test
 
 class OpenApiConverterDeprecationTest {
 

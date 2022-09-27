@@ -9,5 +9,6 @@ import jakarta.ws.rs.Path
 class HeaderParameterOnFunction {
 
     @GET
-    fun todo(@HeaderParam("allow-cache") allowCache: String) { }
+    fun todo(@HeaderParam("allow-cache") allowCache: String) {
+    }
 }

@@ -8,5 +8,6 @@ class NoPathParameter {
 
     @GET
     @Path("/{id}")
-    fun todo() { }
+    fun todo() {
+    }
 }

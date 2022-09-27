@@ -12,5 +12,6 @@ class ConsumesMultipleMediaTypesTestController {
 
     @Post
     @Consumes("application/json", "application/pdf")
-    fun todos(@Body todo: Todo) { }
+    fun todos(@Body todo: Todo) {
+    }
 }

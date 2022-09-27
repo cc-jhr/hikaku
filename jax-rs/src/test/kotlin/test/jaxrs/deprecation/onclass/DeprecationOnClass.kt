@@ -8,5 +8,6 @@ import jakarta.ws.rs.Path
 class DeprecationOnClass {
 
     @GET
-    fun todo() { }
+    fun todo() {
+    }
 }

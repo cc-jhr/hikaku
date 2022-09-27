@@ -10,5 +10,6 @@ import test.micronaut.Todo
 class ConsumesDefaultMediaTypeTestController {
 
     @Post
-    fun todos(@Body todo: Todo) { }
+    fun todos(@Body todo: Todo) {
+    }
 }

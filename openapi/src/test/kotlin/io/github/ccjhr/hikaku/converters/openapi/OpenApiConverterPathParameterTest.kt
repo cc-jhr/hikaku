@@ -1,10 +1,10 @@
 package io.github.ccjhr.hikaku.converters.openapi
 
-import io.github.ccjhr.hikaku.endpoints.PathParameter
 import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.hikaku.endpoints.PathParameter
 import io.github.ccjhr.mustSatisfy
-import kotlin.test.Test
 import kotlin.io.path.toPath
+import kotlin.test.Test
 
 class OpenApiConverterPathParameterTest {
 

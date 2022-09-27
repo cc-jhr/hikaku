@@ -1,9 +1,9 @@
 package io.github.ccjhr.hikaku.converters.openapi
 
+import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.DELETE
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET
-import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import kotlin.io.path.toPath
 import kotlin.test.Test

@@ -1,7 +1,7 @@
 package io.github.ccjhr.hikaku.reporters
 
 import io.github.ccjhr.hikaku.SupportedFeatures
-import io.github.ccjhr.hikaku.SupportedFeatures.*
+import io.github.ccjhr.hikaku.SupportedFeatures.Feature
 import io.github.ccjhr.hikaku.endpoints.*
 
 /**
@@ -21,8 +21,8 @@ class CommandLineReporter : Reporter {
 
 
         if (endpointMatchResult.notFound.isEmpty() && endpointMatchResult.notExpected.isEmpty()) {
-            println ("")
-            println ("✅ Test successful. Specification and implementation match.")
+            println("")
+            println("✅ Test successful. Specification and implementation match.")
         }
 
 
@@ -47,7 +47,7 @@ class CommandLineReporter : Reporter {
         var path = "< ${endpoint.httpMethod} ${endpoint.path}"
 
         supportedFeatures.forEach {
-            path += when(it) {
+            path += when (it) {
                 Feature.QueryParameters -> listQueryParameters(endpoint.queryParameters)
                 Feature.PathParameters -> listPathParameters(endpoint.pathParameters)
                 Feature.HeaderParameters -> listHeaderParameter(endpoint.headerParameters)
@@ -62,28 +62,36 @@ class CommandLineReporter : Reporter {
     }
 
     private fun listQueryParameters(queryParameters: Set<QueryParameter>) =
-            "  QueryParameters[${queryParameters.joinToString {
-                "${it.parameterName} (${if(it.required) "required" else "optional"})"
-            }}]"
+        "  QueryParameters[${
+            queryParameters.joinToString {
+                "${it.parameterName} (${if (it.required) "required" else "optional"})"
+            }
+        }]"
 
     private fun listPathParameters(pathParameters: Set<PathParameter>) =
-            "  PathParameters[${pathParameters.joinToString {
+        "  PathParameters[${
+            pathParameters.joinToString {
                 it.parameterName
-            }}]"
+            }
+        }]"
 
     private fun listHeaderParameter(headerParameters: Set<HeaderParameter>) =
-            "  HeaderParameters[${headerParameters.joinToString {
-                "${it.parameterName} (${if(it.required) "required" else "optional"})"
-            }}]"
+        "  HeaderParameters[${
+            headerParameters.joinToString {
+                "${it.parameterName} (${if (it.required) "required" else "optional"})"
+            }
+        }]"
 
     private fun listMatrixParameter(matrixParameters: Set<MatrixParameter>) =
-            "  MatrixParameters[${matrixParameters.joinToString {
-                "${it.parameterName} (${if(it.required) "required" else "optional"})"
-            }}]"
+        "  MatrixParameters[${
+            matrixParameters.joinToString {
+                "${it.parameterName} (${if (it.required) "required" else "optional"})"
+            }
+        }]"
 
     private fun listRequestMediaTypes(requestMediaTypes: Set<String>) =
-            "  Consumes[${requestMediaTypes.joinToString()}]"
+        "  Consumes[${requestMediaTypes.joinToString()}]"
 
     private fun listResponseMediaTypes(responseMediaTypes: Set<String>) =
-            "  Produces[${responseMediaTypes.joinToString()}]"
+        "  Produces[${responseMediaTypes.joinToString()}]"
 }

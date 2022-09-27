@@ -1,10 +1,10 @@
 package io.github.ccjhr.hikaku.converters.wadl
 
-import io.github.ccjhr.hikaku.endpoints.MatrixParameter
 import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.hikaku.endpoints.MatrixParameter
 import io.github.ccjhr.mustSatisfy
-import kotlin.test.Test
 import java.nio.file.Paths
+import kotlin.test.Test
 
 class WadlConverterMatrixParameterTest {
 
@@ -13,8 +13,8 @@ class WadlConverterMatrixParameterTest {
         // given
         val file = Paths.get(this::class.java.classLoader.getResource("matrix_parameters.wadl").toURI())
         val matrixParameters = setOf(
-                MatrixParameter("done", false),
-                MatrixParameter("tag", true),
+            MatrixParameter("done", false),
+            MatrixParameter("tag", true),
         )
 
         // when

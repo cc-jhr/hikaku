@@ -6,23 +6,30 @@ import jakarta.ws.rs.*
 class AllHttpMethods {
 
     @GET
-    fun getTodo() { }
+    fun getTodo() {
+    }
 
     @DELETE
-    fun deleteTodo() { }
+    fun deleteTodo() {
+    }
 
     @POST
-    fun postTodo() { }
+    fun postTodo() {
+    }
 
     @PUT
-    fun putTodos() { }
+    fun putTodos() {
+    }
 
     @PATCH
-    fun patchTodos() { }
+    fun patchTodos() {
+    }
 
     @OPTIONS
-    fun optionsTodos() { }
+    fun optionsTodos() {
+    }
 
     @HEAD
-    fun headTodos() { }
+    fun headTodos() {
+    }
 }

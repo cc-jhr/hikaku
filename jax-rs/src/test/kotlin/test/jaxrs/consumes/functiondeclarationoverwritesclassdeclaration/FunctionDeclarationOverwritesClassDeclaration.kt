@@ -13,5 +13,6 @@ class FunctionDeclarationOverwritesClassDeclaration {
 
     @GET
     @Consumes("application/json", "text/plain")
-    fun todo(todo: Todo) { }
+    fun todo(todo: Todo) {
+    }
 }

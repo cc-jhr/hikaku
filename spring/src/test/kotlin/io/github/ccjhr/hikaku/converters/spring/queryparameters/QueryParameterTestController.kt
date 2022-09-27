@@ -13,7 +13,8 @@ open class DummyApp
 open class QueryParameterNamedByVariableController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestParam tag: String) { }
+    fun getAllTodos(@RequestParam tag: String) {
+    }
 }
 
 @Controller
@@ -21,7 +22,8 @@ open class QueryParameterNamedByVariableController {
 open class QueryParameterNamedByValueAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestParam(value = "tag") variable: String) { }
+    fun getAllTodos(@RequestParam(value = "tag") variable: String) {
+    }
 }
 
 @Controller
@@ -29,7 +31,8 @@ open class QueryParameterNamedByValueAttributeController {
 open class QueryParameterNamedByNameAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestParam(name = "tag") variable: String) { }
+    fun getAllTodos(@RequestParam(name = "tag") variable: String) {
+    }
 }
 
 @Controller
@@ -37,7 +40,8 @@ open class QueryParameterNamedByNameAttributeController {
 open class QueryParameterHavingBothNameAndValueAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestParam(value="valueAttribute", name = "nameAttribute") variable: String) { }
+    fun getAllTodos(@RequestParam(value = "valueAttribute", name = "nameAttribute") variable: String) {
+    }
 }
 
 @Controller
@@ -45,7 +49,8 @@ open class QueryParameterHavingBothNameAndValueAttributeController {
 open class QueryParameterOptionalController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestParam(name = "tag", required = false) variable: String) { }
+    fun getAllTodos(@RequestParam(name = "tag", required = false) variable: String) {
+    }
 }
 
 @Controller
@@ -53,7 +58,8 @@ open class QueryParameterOptionalController {
 open class QueryParameterOptionalBecauseOfDefaultValueController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestParam(name = "tag", defaultValue = "mytag") variable: String) { }
+    fun getAllTodos(@RequestParam(name = "tag", defaultValue = "mytag") variable: String) {
+    }
 }
 
 @Controller
@@ -61,5 +67,6 @@ open class QueryParameterOptionalBecauseOfDefaultValueController {
 open class QueryParameterOnDefaultErrorEndpointController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestParam(value = "tag", required = false) variable: String) { }
+    fun getAllTodos(@RequestParam(value = "tag", required = false) variable: String) {
+    }
 }

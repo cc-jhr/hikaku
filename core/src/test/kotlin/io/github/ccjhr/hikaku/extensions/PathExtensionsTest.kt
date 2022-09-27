@@ -7,10 +7,10 @@ import io.github.ccjhr.throwable.expectsException
 import io.github.ccjhr.throwable.hasMessage
 import io.github.ccjhr.throwable.noExceptionThrown
 import org.junit.jupiter.api.Nested
-import kotlin.test.Test
 import java.nio.file.Files.createTempDirectory
 import kotlin.io.path.Path
 import kotlin.io.path.toPath
+import kotlin.test.Test
 
 @OptIn(Experimental::class)
 class PathExtensionsTest {

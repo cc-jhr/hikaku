@@ -7,5 +7,6 @@ import jakarta.ws.rs.Path
 class SimplePathWithoutLeadingSlash {
 
     @GET
-    fun todo() { }
+    fun todo() {
+    }
 }

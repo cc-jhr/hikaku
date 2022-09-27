@@ -16,5 +16,5 @@ data class MatchResult(
     val specificationEndpoints: Set<Endpoint>,
     val implementationEndpoints: Set<Endpoint>,
     val notFound: Set<Endpoint>,
-    val notExpected: Set<Endpoint>
+    val notExpected: Set<Endpoint>,
 )

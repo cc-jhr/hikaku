@@ -9,5 +9,6 @@ import io.micronaut.http.annotation.QueryValue
 class QueryParameterTestController {
 
     @Get
-    fun todos(@QueryValue("filter") filter: String) { }
+    fun todos(@QueryValue("filter") filter: String) {
+    }
 }

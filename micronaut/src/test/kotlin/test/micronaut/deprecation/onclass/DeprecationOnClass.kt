@@ -8,5 +8,6 @@ import io.micronaut.http.annotation.Get
 class DeprecationOnClass {
 
     @Get
-    fun todo() { }
+    fun todo() {
+    }
 }

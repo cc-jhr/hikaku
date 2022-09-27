@@ -30,20 +30,20 @@ internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String
     }
 
     val produces = this.key
-            .producesCondition
-            .expressions
-            .map { it.mediaType.toString() }
-            .toSet()
+        .producesCondition
+        .expressions
+        .map { it.mediaType.toString() }
+        .toSet()
 
     if (produces.isNotEmpty()) {
         return produces
     }
 
     val returnType = this.value
-            .method
-            .kotlinFunction
-            ?.returnType
-            ?.jvmErasure
+        .method
+        .kotlinFunction
+        ?.returnType
+        ?.jvmErasure
 
     return if (returnType != null) {
         when {
@@ -60,24 +60,25 @@ internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String
 private fun Method.hasNoReturnType() = this.returnType.kotlin.isUnit()
 
 private fun HandlerMethod.providesRestControllerAnnotation() = this.method
-        .kotlinFunction
-        ?.instanceParameter
-        ?.type
-        ?.jvmErasure
-        ?.findAnnotation<RestController>() != null
+    .kotlinFunction
+    ?.instanceParameter
+    ?.type
+    ?.jvmErasure
+    ?.findAnnotation<RestController>() != null
 
-private fun HandlerMethod.providesResponseBodyAnnotation() = isResponseBodyAnnotationOnClass() || isResponseBodyAnnotationOnFunction()
+private fun HandlerMethod.providesResponseBodyAnnotation() =
+    isResponseBodyAnnotationOnClass() || isResponseBodyAnnotationOnFunction()
 
 private fun HandlerMethod.isResponseBodyAnnotationOnClass() = this.method
-        .kotlinFunction
-        ?.instanceParameter
-        ?.type
-        ?.jvmErasure
-        ?.findAnnotation<ResponseBody>() != null
+    .kotlinFunction
+    ?.instanceParameter
+    ?.type
+    ?.jvmErasure
+    ?.findAnnotation<ResponseBody>() != null
 
 private fun HandlerMethod.isResponseBodyAnnotationOnFunction() = this.method
-        .kotlinFunction
-        ?.findAnnotation<ResponseBody>() != null
+    .kotlinFunction
+    ?.findAnnotation<ResponseBody>() != null
 
 private fun HandlerMethod.hasHttpServletResponseParam(): Boolean {
     return this.methodParameters

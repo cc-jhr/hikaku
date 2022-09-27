@@ -1,10 +1,11 @@
 package io.github.ccjhr.hikaku.extensions
 
 import io.github.ccjhr.boolean.`is`
-import io.github.ccjhr.hikaku.extensions.isString
-import io.github.ccjhr.hikaku.extensions.isUnit
 import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
+import kotlin.Int
+import kotlin.String
+import kotlin.Unit
 import kotlin.test.Test
 import java.lang.String as JavaString
 

@@ -10,5 +10,6 @@ class PathParameterOnFunction {
 
     @GET
     @Path("/{id}")
-    fun todo(@PathParam("id") id: String) { }
+    fun todo(@PathParam("id") id: String) {
+    }
 }

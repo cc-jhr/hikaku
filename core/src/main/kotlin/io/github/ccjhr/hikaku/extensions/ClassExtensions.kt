@@ -5,8 +5,8 @@ import kotlin.reflect.jvm.jvmName
 
 fun KClass<*>.isUnit(): Boolean {
     return this.isInstance(Unit) ||
-    this.jvmName == "java.lang.Void" ||
-    this.jvmName == "void"
+            this.jvmName == "java.lang.Void" ||
+            this.jvmName == "void"
 }
 
 fun KClass<*>.isString(): Boolean {

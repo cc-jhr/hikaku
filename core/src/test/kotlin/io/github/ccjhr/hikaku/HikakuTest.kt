@@ -2,22 +2,22 @@
 
 package io.github.ccjhr.hikaku
 
+import io.github.ccjhr.Experimental
+import io.github.ccjhr.boolean.`is`
 import io.github.ccjhr.hikaku.SupportedFeatures.Feature
 import io.github.ccjhr.hikaku.converters.EndpointConverter
+import io.github.ccjhr.hikaku.endpoints.*
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.hikaku.reporters.MatchResult
 import io.github.ccjhr.hikaku.reporters.NoOperationReporter
 import io.github.ccjhr.hikaku.reporters.Reporter
-import io.github.ccjhr.Experimental
-import io.github.ccjhr.boolean.`is`
-import io.github.ccjhr.hikaku.endpoints.*
 import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.throwable.expectsException
 import io.github.ccjhr.throwable.hasMessage
 import io.github.ccjhr.throwable.noExceptionThrown
 import org.junit.jupiter.api.Nested
-import kotlin.test.Test
 import org.opentest4j.AssertionFailedError
+import kotlin.test.Test
 
 class HikakuTest {
 
@@ -70,7 +70,7 @@ class HikakuTest {
                     Endpoint("/a", GET),
                     Endpoint("/b", GET),
 
-                )
+                    )
                 override val supportedFeatures = SupportedFeatures()
             }
 
@@ -104,7 +104,7 @@ class HikakuTest {
                     Endpoint("/a", GET),
                     Endpoint("/b", GET),
 
-                )
+                    )
                 override val supportedFeatures = SupportedFeatures()
             }
 
@@ -140,7 +140,7 @@ class HikakuTest {
                     Endpoint("/todos", DELETE),
                     Endpoint("/todos", GET),
 
-                )
+                    )
                 override val supportedFeatures = SupportedFeatures()
             }
 
@@ -174,7 +174,7 @@ class HikakuTest {
                     Endpoint("/todos", DELETE),
                     Endpoint("/todos", GET),
 
-                )
+                    )
                 override val supportedFeatures = SupportedFeatures()
             }
 

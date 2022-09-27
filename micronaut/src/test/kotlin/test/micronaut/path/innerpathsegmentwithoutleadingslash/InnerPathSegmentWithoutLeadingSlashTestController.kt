@@ -7,5 +7,6 @@ import io.micronaut.http.annotation.Get
 class InnerPathSegmentWithoutLeadingSlashTestController {
 
     @Get("list")
-    fun todos() { }
+    fun todos() {
+    }
 }

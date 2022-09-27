@@ -8,5 +8,5 @@ enum class HttpMethod {
     PATCH,
     DELETE,
     TRACE,
-    OPTIONS
+    OPTIONS,
 }

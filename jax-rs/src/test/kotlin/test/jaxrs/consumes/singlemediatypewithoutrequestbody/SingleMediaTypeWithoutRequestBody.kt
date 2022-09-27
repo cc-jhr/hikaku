@@ -9,5 +9,6 @@ class SingleMediaTypeWithoutRequestBody {
 
     @GET
     @Consumes("application/json")
-    fun todo() { }
+    fun todo() {
+    }
 }

@@ -16,7 +16,8 @@ open class DummyApp
 open class PathParameterNamedByVariableController {
 
     @GetMapping("/{id}")
-    fun getSpecificTodoItem(@PathVariable id: Int) { }
+    fun getSpecificTodoItem(@PathVariable id: Int) {
+    }
 }
 
 @Controller
@@ -25,7 +26,8 @@ open class PathParameterNamedByVariableController {
 open class PathParameterNamedByValueAttributeController {
 
     @GetMapping("/{id}")
-    fun getSpecificTodoItem(@PathVariable(value = "id") variable: Int) { }
+    fun getSpecificTodoItem(@PathVariable(value = "id") variable: Int) {
+    }
 }
 
 @Controller
@@ -34,7 +36,8 @@ open class PathParameterNamedByValueAttributeController {
 open class PathParameterNamedByNameAttributeController {
 
     @GetMapping("/{id}")
-    fun getSpecificTodoItem(@PathVariable(name = "id") variable: Int) { }
+    fun getSpecificTodoItem(@PathVariable(name = "id") variable: Int) {
+    }
 }
 
 @Controller
@@ -43,7 +46,8 @@ open class PathParameterNamedByNameAttributeController {
 open class PathParameterHavingBothValueAndNameAttributeController {
 
     @GetMapping("/{id}")
-    fun getSpecificTodoItem(@PathVariable(value = "valueAttribute", name = "nameAttribute") variable: Int) { }
+    fun getSpecificTodoItem(@PathVariable(value = "valueAttribute", name = "nameAttribute") variable: Int) {
+    }
 }
 
 @Controller
@@ -51,7 +55,8 @@ open class PathParameterHavingBothValueAndNameAttributeController {
 open class PathParameterSupportedForOptionsIfExplicitlyDefinedController {
 
     @RequestMapping("/todos/{id}", method = [OPTIONS])
-    fun getSpecificTodoItem(@PathVariable id: Int) { }
+    fun getSpecificTodoItem(@PathVariable id: Int) {
+    }
 }
 
 @Controller
@@ -60,5 +65,6 @@ open class PathParameterSupportedForOptionsIfExplicitlyDefinedController {
 open class PathParameterOnDefaultErrorEndpointController {
 
     @GetMapping("/{id}")
-    fun getSpecificTodoItem(@PathVariable(value = "id") variable: Int) { }
+    fun getSpecificTodoItem(@PathVariable(value = "id") variable: Int) {
+    }
 }

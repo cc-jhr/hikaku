@@ -12,5 +12,6 @@ data class Todo(val description: String = "")
 class MultipleMediaTypesOnClass {
 
     @GET
-    fun todo(todo: Todo) {}
+    fun todo(todo: Todo) {
+    }
 }

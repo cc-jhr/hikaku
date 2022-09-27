@@ -7,5 +7,6 @@ import io.micronaut.http.annotation.Delete
 class OnlyControllerAnnotationWithDeletePathTestController {
 
     @Delete
-    fun todos() { }
+    fun todos() {
+    }
 }

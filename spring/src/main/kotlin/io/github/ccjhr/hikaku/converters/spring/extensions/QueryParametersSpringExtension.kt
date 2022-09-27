@@ -11,9 +11,9 @@ internal fun HandlerMethod.hikakuQueryParameters(): Set<QueryParameter> {
     val method = this.method.kotlinFunction ?: return emptySet()
 
     return method.parameters
-            .filter { it.annotations.filterIsInstance<RequestParam>().any() }
-            .map { extractQueryParameter(it) }
-            .toSet()
+        .filter { it.annotations.filterIsInstance<RequestParam>().any() }
+        .map { extractQueryParameter(it) }
+        .toSet()
 }
 
 private fun extractQueryParameter(it: KParameter): QueryParameter {
