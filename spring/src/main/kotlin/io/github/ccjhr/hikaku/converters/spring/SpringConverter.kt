@@ -3,7 +3,6 @@ package io.github.ccjhr.hikaku.converters.spring
 import io.github.ccjhr.hikaku.SupportedFeatures
 import io.github.ccjhr.hikaku.SupportedFeatures.Feature
 import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
-import de.codecentric.hikaku.converters.spring.extensions.*
 import io.github.ccjhr.hikaku.converters.spring.extensions.*
 import io.github.ccjhr.hikaku.converters.spring.extensions.consumes
 import io.github.ccjhr.hikaku.converters.spring.extensions.hikakuHeaderParameters

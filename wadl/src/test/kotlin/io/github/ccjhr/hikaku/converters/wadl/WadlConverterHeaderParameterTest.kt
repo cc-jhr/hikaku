@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.wadl
+package io.github.ccjhr.hikaku.converters.wadl
 
 import io.github.ccjhr.hikaku.endpoints.HeaderParameter
 import io.github.ccjhr.collection.containsExactly

@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.wadl.extensions
+package io.github.ccjhr.hikaku.converters.wadl.extensions
 
 import org.w3c.dom.Node
 

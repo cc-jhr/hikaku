@@ -1,10 +1,10 @@
-package de.codecentric.hikaku.converters.wadl
+package io.github.ccjhr.hikaku.converters.wadl
 
 import io.github.ccjhr.hikaku.SupportedFeatures
 import io.github.ccjhr.hikaku.SupportedFeatures.Feature
 import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
-import de.codecentric.hikaku.converters.wadl.extensions.getAttribute
+import io.github.ccjhr.hikaku.converters.wadl.extensions.getAttribute
 import io.github.ccjhr.hikaku.endpoints.*
 import io.github.ccjhr.hikaku.extensions.checkFileValidity
 import org.w3c.dom.Node
