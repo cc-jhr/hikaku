@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.openapi
+package io.github.ccjhr.hikaku.converters.openapi
 
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.DELETE

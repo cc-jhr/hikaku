@@ -1,24 +1,23 @@
-package de.codecentric.hikaku.converters.openapi
+package io.github.ccjhr.hikaku.converters.openapi
 
 import io.github.ccjhr.hikaku.endpoints.Endpoint
-import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.POST
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import kotlin.test.Test
 import java.nio.file.Paths
 
-class OpenApiConverterDeprecationTest {
+class OpenApiConverterConsumesTest {
 
     @Test
-    fun `no deprecation`() {
+    fun `inline declaration`() {
         //given
-        val file = Paths.get(this::class.java.classLoader.getResource("deprecation/deprecation_none.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("consumes/consumes_inline.yaml").toURI())
         val implementation = setOf(
             Endpoint(
                 path = "/todos",
-                httpMethod = GET,
-                produces = setOf("application/json"),
-                deprecated = false,
+                httpMethod = POST,
+                consumes = setOf("application/xml"),
             )
         )
 
@@ -32,15 +31,16 @@ class OpenApiConverterDeprecationTest {
     }
 
     @Test
-    fun `deprecated operation`() {
+    fun `response is declared in components section`() {
         //given
-        val file = Paths.get(this::class.java.classLoader.getResource("deprecation/deprecation_operation.yaml").toURI())
+        val file = Paths.get(
+            this::class.java.classLoader.getResource("consumes/consumes_requestbody_in_components.yaml").toURI()
+        )
         val implementation = setOf(
             Endpoint(
                 path = "/todos",
-                httpMethod = GET,
-                produces = setOf("application/json"),
-                deprecated = true,
+                httpMethod = POST,
+                consumes = setOf("application/xml"),
             )
         )
 

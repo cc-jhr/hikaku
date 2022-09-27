@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.openapi.extensions
+package io.github.ccjhr.hikaku.converters.openapi.extensions
 
 import io.swagger.v3.oas.models.Operation
 import io.swagger.v3.oas.models.PathItem

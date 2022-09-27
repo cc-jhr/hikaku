@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.openapi
+package io.github.ccjhr.hikaku.converters.openapi
 
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import io.github.ccjhr.mustSatisfy
