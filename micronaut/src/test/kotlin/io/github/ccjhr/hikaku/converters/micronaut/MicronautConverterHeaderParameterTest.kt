@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.micronaut
+package io.github.ccjhr.hikaku.converters.micronaut
 
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HeaderParameter

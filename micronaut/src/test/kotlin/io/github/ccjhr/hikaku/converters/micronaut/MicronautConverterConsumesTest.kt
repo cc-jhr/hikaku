@@ -1,13 +1,13 @@
-package de.codecentric.hikaku.converters.micronaut
+package io.github.ccjhr.hikaku.converters.micronaut
 
 import io.github.ccjhr.hikaku.endpoints.Endpoint
-import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET
+import io.github.ccjhr.hikaku.endpoints.HttpMethod.POST
 import io.github.ccjhr.collection.containsExactly
 import io.github.ccjhr.mustSatisfy
 import org.junit.jupiter.api.Nested
 import kotlin.test.Test
 
-class MicronautConverterProducesTest {
+class MicronautConverterConsumesTest {
 
     @Nested
     inner class DeclaredByControllerOnClass {
@@ -18,15 +18,15 @@ class MicronautConverterProducesTest {
             val specification = setOf(
                 Endpoint(
                     path = "/todos",
-                    httpMethod = GET,
-                    produces = setOf(
+                    httpMethod = POST,
+                    consumes = setOf(
                         "text/plain",
                     ),
                 ),
             )
 
             //when
-            val result = MicronautConverter("test.micronaut.produces.onclass.onlycontroller.singlemediatype").conversionResult
+            val result = MicronautConverter("test.micronaut.consumes.onclass.onlycontroller.singlemediatype").conversionResult
 
             //then
             result mustSatisfy {
@@ -40,8 +40,8 @@ class MicronautConverterProducesTest {
             val specification = setOf(
                 Endpoint(
                     path = "/todos",
-                    httpMethod = GET,
-                    produces = setOf(
+                    httpMethod = POST,
+                    consumes = setOf(
                         "text/plain",
                         "application/xml",
                     ),
@@ -49,7 +49,7 @@ class MicronautConverterProducesTest {
             )
 
             //when
-            val result = MicronautConverter("test.micronaut.produces.onclass.onlycontroller.multiplemediatypes").conversionResult
+            val result = MicronautConverter("test.micronaut.consumes.onclass.onlycontroller.multiplemediatypes").conversionResult
 
             //then
             result mustSatisfy {
@@ -59,7 +59,7 @@ class MicronautConverterProducesTest {
     }
 
     @Nested
-    inner class ProducesOnClassOverridesController {
+    inner class ConsumesOnClassOverridesController {
 
         @Test
         fun `single media type`() {
@@ -67,15 +67,15 @@ class MicronautConverterProducesTest {
             val specification = setOf(
                 Endpoint(
                     path = "/todos",
-                    httpMethod = GET,
-                    produces = setOf(
+                    httpMethod = POST,
+                    consumes = setOf(
                         "application/xml",
                     ),
                 ),
             )
 
             //when
-            val result = MicronautConverter("test.micronaut.produces.onclass.producesoverridescontroller.singlemediatype").conversionResult
+            val result = MicronautConverter("test.micronaut.consumes.onclass.consumesoverridescontroller.singlemediatype").conversionResult
 
             //then
             result mustSatisfy {
@@ -89,8 +89,8 @@ class MicronautConverterProducesTest {
             val specification = setOf(
                 Endpoint(
                     path = "/todos",
-                    httpMethod = GET,
-                    produces = setOf(
+                    httpMethod = POST,
+                    consumes = setOf(
                         "application/json",
                         "application/pdf",
                     ),
@@ -98,7 +98,7 @@ class MicronautConverterProducesTest {
             )
 
             //when
-            val result = MicronautConverter("test.micronaut.produces.onclass.producesoverridescontroller.multiplemediatypes").conversionResult
+            val result = MicronautConverter("test.micronaut.consumes.onclass.consumesoverridescontroller.multiplemediatypes").conversionResult
 
             //then
             result mustSatisfy {
@@ -108,7 +108,7 @@ class MicronautConverterProducesTest {
     }
 
     @Nested
-    inner class DeclaredByProducesOnFunction {
+    inner class DeclaredByConsumesOnFunction {
 
         @Test
         fun `single media type`() {
@@ -116,15 +116,15 @@ class MicronautConverterProducesTest {
             val specification = setOf(
                 Endpoint(
                     path = "/todos",
-                    httpMethod = GET,
-                    produces = setOf(
+                    httpMethod = POST,
+                    consumes = setOf(
                         "text/plain",
                     ),
                 ),
             )
 
             //when
-            val result = MicronautConverter("test.micronaut.produces.onfunction.onlyproduces.singlemediatype").conversionResult
+            val result = MicronautConverter("test.micronaut.consumes.onfunction.onlyconsumes.singlemediatype").conversionResult
 
             //then
             result mustSatisfy {
@@ -138,8 +138,8 @@ class MicronautConverterProducesTest {
             val specification = setOf(
                 Endpoint(
                     path = "/todos",
-                    httpMethod = GET,
-                    produces = setOf(
+                    httpMethod = POST,
+                    consumes = setOf(
                         "text/plain",
                         "application/xml",
                     ),
@@ -147,7 +147,7 @@ class MicronautConverterProducesTest {
             )
 
             //when
-            val result = MicronautConverter("test.micronaut.produces.onfunction.onlyproduces.multiplemediatypes").conversionResult
+            val result = MicronautConverter("test.micronaut.consumes.onfunction.onlyconsumes.multiplemediatypes").conversionResult
 
             //then
             result mustSatisfy {
@@ -157,7 +157,7 @@ class MicronautConverterProducesTest {
     }
 
     @Nested
-    inner class ProducesOnFunctionOverridesController {
+    inner class ConsumesOnFunctionOverridesController {
 
         @Test
         fun `single media type`() {
@@ -165,15 +165,15 @@ class MicronautConverterProducesTest {
             val specification = setOf(
                 Endpoint(
                     path = "/todos",
-                    httpMethod = GET,
-                    produces = setOf(
+                    httpMethod = POST,
+                    consumes = setOf(
                         "application/xml",
                     ),
                 ),
             )
 
             //when
-            val result = MicronautConverter("test.micronaut.produces.onfunction.producesoverridescontroller.singlemediatype").conversionResult
+            val result = MicronautConverter("test.micronaut.consumes.onfunction.consumesoverridescontroller.singlemediatype").conversionResult
 
             //then
             result mustSatisfy {
@@ -187,8 +187,8 @@ class MicronautConverterProducesTest {
             val specification = setOf(
                 Endpoint(
                     path = "/todos",
-                    httpMethod = GET,
-                    produces = setOf(
+                    httpMethod = POST,
+                    consumes = setOf(
                         "application/json",
                         "application/pdf",
                     ),
@@ -196,7 +196,7 @@ class MicronautConverterProducesTest {
             )
 
             //when
-            val result = MicronautConverter("test.micronaut.produces.onfunction.producesoverridescontroller.multiplemediatypes").conversionResult
+            val result = MicronautConverter("test.micronaut.consumes.onfunction.consumesoverridescontroller.multiplemediatypes").conversionResult
 
             //then
             result mustSatisfy {
@@ -206,20 +206,20 @@ class MicronautConverterProducesTest {
     }
 
     @Test
-    fun `use default media if no produces info has been set`() {
+    fun `use default media if no consume info has been set`() {
         //given
         val specification = setOf(
             Endpoint(
                 path = "/todos",
-                httpMethod = GET,
-                produces = setOf(
+                httpMethod = POST,
+                consumes = setOf(
                     "application/json",
                 ),
             ),
         )
 
         //when
-        val result = MicronautConverter("test.micronaut.produces.default").conversionResult
+        val result = MicronautConverter("test.micronaut.consumes.default").conversionResult
 
         //then
         result mustSatisfy {

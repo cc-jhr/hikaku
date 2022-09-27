@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.micronaut
+package io.github.ccjhr.hikaku.converters.micronaut
 
 import io.github.ccjhr.hikaku.SupportedFeatures
 import io.github.ccjhr.hikaku.SupportedFeatures.Feature
