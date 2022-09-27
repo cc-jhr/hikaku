@@ -1,6 +1,7 @@
 package de.codecentric.hikaku.converters.jaxrs
 
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
+import io.github.ccjhr.hikaku.converters.jaxrs.JaxRsConverter
 import io.github.ccjhr.mustSatisfy
 import io.github.ccjhr.throwable.expectsException
 import io.github.ccjhr.throwable.hasMessage

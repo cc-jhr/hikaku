@@ -4,6 +4,7 @@ import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET
 import io.github.ccjhr.hikaku.endpoints.QueryParameter
 import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.hikaku.converters.jaxrs.JaxRsConverter
 import io.github.ccjhr.mustSatisfy
 import kotlin.test.Test
 
