@@ -1,10 +1,14 @@
-package de.codecentric.hikaku.converters.raml
+package io.github.ccjhr.hikaku.converters.raml
 
 import io.github.ccjhr.hikaku.SupportedFeatures
 import io.github.ccjhr.hikaku.SupportedFeatures.Feature
 import io.github.ccjhr.hikaku.converters.AbstractEndpointConverter
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
-import de.codecentric.hikaku.converters.raml.extensions.*
+import io.github.ccjhr.hikaku.converters.raml.extensions.*
+import io.github.ccjhr.hikaku.converters.raml.extensions.hikakuHeaderParameters
+import io.github.ccjhr.hikaku.converters.raml.extensions.hikakuHttpMethod
+import io.github.ccjhr.hikaku.converters.raml.extensions.hikakuQueryParameters
+import io.github.ccjhr.hikaku.converters.raml.extensions.requestMediaTypes
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.extensions.checkFileValidity
 import org.raml.v2.api.RamlModelBuilder

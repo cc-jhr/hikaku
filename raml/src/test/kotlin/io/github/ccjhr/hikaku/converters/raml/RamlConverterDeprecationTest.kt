@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.raml
+package io.github.ccjhr.hikaku.converters.raml
 
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.GET

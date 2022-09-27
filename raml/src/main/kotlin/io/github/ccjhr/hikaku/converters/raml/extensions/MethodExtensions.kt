@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.raml.extensions
+package io.github.ccjhr.hikaku.converters.raml.extensions
 
 import io.github.ccjhr.hikaku.endpoints.HeaderParameter
 import io.github.ccjhr.hikaku.endpoints.HttpMethod

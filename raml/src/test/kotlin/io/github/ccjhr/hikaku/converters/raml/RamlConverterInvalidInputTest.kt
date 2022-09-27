@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.raml
+package io.github.ccjhr.hikaku.converters.raml
 
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import io.github.ccjhr.mustSatisfy
