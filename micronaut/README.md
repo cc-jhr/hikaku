@@ -132,4 +132,4 @@ class TodosController {
 
 Instantiate the converter with a package name which will be scanned recursively for controllers.
 
-_Example_: `MicronautConverter("de.codecentric.hikaku")`
+_Example_: `MicronautConverter("io.github.ccjhr.hikaku")`

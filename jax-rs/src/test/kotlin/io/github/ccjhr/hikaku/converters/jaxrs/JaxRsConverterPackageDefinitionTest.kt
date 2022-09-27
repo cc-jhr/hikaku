@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.jaxrs
+package io.github.ccjhr.hikaku.converters.jaxrs
 
 import io.github.ccjhr.hikaku.converters.EndpointConverterException
 import io.github.ccjhr.hikaku.converters.jaxrs.JaxRsConverter

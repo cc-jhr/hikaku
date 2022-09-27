@@ -20,4 +20,4 @@ Please refer to the list of [all features](../docs/features.md). To check the fe
 
 Instantiate the converter with a package name which will be scanned recursively for controllers.
 
-_Example_: `JaxRsConverter("de.codecentric.hikaku")`
+_Example_: `JaxRsConverter("io.github.ccjhr.hikaku")`
