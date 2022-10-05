@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "1.7.21"
     jacoco
     `jacoco-report-aggregation`
-    id("com.github.nbaztec.coveralls-jacoco") version "1.2.14"
+    id("com.github.nbaztec.coveralls-jacoco") version "1.2.15"
 }
 
 val githubUsername by extra { System.getenv("GH_USERNAME") ?: project.findProperty("GH_USERNAME") as String? ?: "cc-jhr" }
