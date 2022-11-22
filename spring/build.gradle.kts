@@ -8,8 +8,15 @@ plugins {
 val moduleName = "hikaku-spring"
 val githubUsername: String by rootProject.extra
 val githubReleaseToken: String by rootProject.extra
-val springBootVersion = "2.7.5"
+val springBootVersion = "3.0.0-M5"
 version = rootProject.version
+
+repositories {
+  maven {
+    name = "spring"
+    url = uri("https://repo.spring.io/milestone")
+  }
+}
 
 dependencies {
   implementation(platform(kotlin("bom")))
