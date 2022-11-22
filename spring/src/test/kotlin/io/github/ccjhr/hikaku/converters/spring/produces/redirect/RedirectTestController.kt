@@ -1,11 +1,11 @@
 package io.github.ccjhr.hikaku.converters.spring.produces.redirect
 
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.view.RedirectView
-import javax.servlet.http.HttpServletResponse
 
 @SpringBootApplication
 open class DummyApp

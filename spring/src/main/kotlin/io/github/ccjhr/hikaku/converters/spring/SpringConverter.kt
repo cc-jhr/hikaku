@@ -41,7 +41,7 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
 
     private fun createEndpoints(
         path: String,
-        mappingEntry: Map.Entry<RequestMappingInfo, HandlerMethod>
+        mappingEntry: Map.Entry<RequestMappingInfo, HandlerMethod>,
     ): Set<Endpoint> {
         val httpMethods = extractAvailableHttpMethods(mappingEntry)
         val cleanedPath = removeRegex(path)

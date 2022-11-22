@@ -1,10 +1,10 @@
 package io.github.ccjhr.hikaku.converters.spring.produces.servletresponse
 
+import jakarta.servlet.http.HttpServletResponse
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ResponseBody
-import javax.servlet.http.HttpServletResponse
 
 @SpringBootApplication
 open class DummyApp
