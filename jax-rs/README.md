@@ -1,5 +1,7 @@
 # hikaku - JAX-RS
 
+Supports JAX-RS 3.1.X
+
 Converter for JAX-RS. This converter can be used with frameworks that make use of JAX-RS. For instance:
 + [Apache CXF](http://cxf.apache.org)
 + [Dropwizard](https://www.dropwizard.io)

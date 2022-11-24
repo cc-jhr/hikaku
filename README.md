@@ -13,13 +13,13 @@ The aim of this project is to meet this need and offer a mechanism to check spec
 ## Currently supported
 
 + **Specifications**
-  + [OpenAPI 3.0.X](openapi/README.md)
+  + [OpenAPI 3.1.X](openapi/README.md)
   + [RAML 1.X](raml/README.md)
   + [WADL](wadl/README.md)
 + **Implementations**
-  + [Spring MVC 5.3.X](spring/README.md)
-  + [Micronaut](micronaut/README.md)
-  + [JAX-RS 3.0.X](jax-rs/README.md)
+  + [Spring WebMVC 6.0.X](spring/README.md)
+  + [Micronaut 3.7.X](micronaut/README.md)
+  + [JAX-RS 3.1.X](jax-rs/README.md)
     + [Apache CXF](http://cxf.apache.org)
     + [Dropwizard](https://www.dropwizard.io)
     + [Jersey](https://jersey.github.io)

@@ -1,6 +1,6 @@
 # hikaku - Micronaut
 
-Converter for Micronaut.
+Supports Micronaut 3.7.X
 
 ## Feature Support
 
