@@ -12,7 +12,7 @@ version = rootProject.version
 
 dependencies {
   implementation(platform(kotlin("bom")))
-  api(kotlin("stdlib-jdk8"))
+  api(kotlin("stdlib"))
   api(kotlin("reflect"))
   api(kotlin("test"))
   api(project(":core"))
@@ -21,7 +21,7 @@ dependencies {
   testImplementation(kotlin("test"))
   testImplementation("org.junit.platform:junit-platform-launcher:1.9.1")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.1")
-  testImplementation("io.github.ccjhr:nagare:3.0.0")
+  testImplementation("io.github.ccjhr:nagare:3.0.1")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
