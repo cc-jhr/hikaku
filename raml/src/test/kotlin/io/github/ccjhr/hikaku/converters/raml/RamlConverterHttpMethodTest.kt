@@ -1,7 +1,10 @@
 package io.github.ccjhr.hikaku.converters.raml
 
 import io.github.ccjhr.boolean.`is`
+import io.github.ccjhr.collection.CollectionAssertionAdjective
+import io.github.ccjhr.collection.CollectionAssertionAdjective.Empty
 import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.collection.`is`
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.mustSatisfy
@@ -43,8 +46,8 @@ class RamlConverterHttpMethodTest {
         val implementation = RamlConverter(file).conversionResult
 
         // then
-        implementation.isEmpty() mustSatisfy {
-            it `is` true // TODO: could be changed to `is` Empty when KT-47475 gets fixed
+        implementation mustSatisfy {
+            it `is` Empty
         }
     }
 }

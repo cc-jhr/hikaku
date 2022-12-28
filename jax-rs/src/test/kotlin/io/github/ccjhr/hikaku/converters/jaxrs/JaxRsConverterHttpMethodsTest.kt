@@ -1,7 +1,10 @@
 package io.github.ccjhr.hikaku.converters.jaxrs
 
 import io.github.ccjhr.boolean.`is`
+import io.github.ccjhr.collection.CollectionAssertionAdjective
+import io.github.ccjhr.collection.CollectionAssertionAdjective.Empty
 import io.github.ccjhr.collection.containsExactly
+import io.github.ccjhr.collection.`is`
 import io.github.ccjhr.hikaku.endpoints.Endpoint
 import io.github.ccjhr.hikaku.endpoints.HttpMethod.*
 import io.github.ccjhr.mustSatisfy
@@ -37,8 +40,8 @@ class JaxRsConverterHttpMethodsTest {
         val result = JaxRsConverter("test.jaxrs.httpmethod.noannotation").conversionResult
 
         //then
-        result.isEmpty() mustSatisfy {
-            it `is` true // TODO: could be changed to `is` Empty when KT-47475 gets fixed
+        result mustSatisfy {
+            it `is` Empty
         }
     }
 }
