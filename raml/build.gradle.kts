@@ -20,7 +20,7 @@ dependencies {
 
   testImplementation("org.junit.platform:junit-platform-launcher:1.9.2")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-  testImplementation("io.github.ccjhr:nagare:3.0.2")
+  testImplementation("io.github.ccjhr:nagare:3.0.3")
   testImplementation("io.mockk:mockk:1.13.4")
 }
 
