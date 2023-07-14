@@ -20,7 +20,7 @@ dependencies {
 
   testImplementation("org.junit.platform:junit-platform-launcher:1.9.3")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.3")
-  testImplementation("io.github.ccjhr:nagare:3.0.4")
+  testImplementation("io.github.ccjhr:nagare:3.0.5")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
