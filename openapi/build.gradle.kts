@@ -18,7 +18,7 @@ dependencies {
   api(project(":core"))
   api("io.swagger.parser.v3:swagger-parser-v3:2.1.16")
 
-  testImplementation("org.junit.platform:junit-platform-launcher:1.9.3")
+  testImplementation("org.junit.platform:junit-platform-launcher:1.10.0")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.0")
   testImplementation("io.github.ccjhr:nagare:3.0.5")
 }
