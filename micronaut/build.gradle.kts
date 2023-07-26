@@ -18,7 +18,7 @@ dependencies {
   api(project(":core"))
   api("io.micronaut:micronaut-http:4.0.1")
 
-  testImplementation("org.junit.platform:junit-platform-launcher:1.9.3")
+  testImplementation("org.junit.platform:junit-platform-launcher:1.10.0")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.0")
   testImplementation("io.github.ccjhr:nagare:3.0.5")
 }

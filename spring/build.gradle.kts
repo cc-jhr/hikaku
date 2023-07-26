@@ -19,7 +19,7 @@ dependencies {
   api("org.springframework:spring-webmvc:6.0.11")
   api(project(":core"))
 
-  testImplementation("org.junit.platform:junit-platform-launcher:1.9.3")
+  testImplementation("org.junit.platform:junit-platform-launcher:1.10.0")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.0")
   testImplementation("io.github.ccjhr:nagare:3.0.5")
   testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
