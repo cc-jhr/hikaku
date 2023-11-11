@@ -16,7 +16,7 @@ dependencies {
   api(kotlin("reflect"))
   api(kotlin("test"))
 
-  testImplementation("org.junit.platform:junit-platform-launcher:1.10.0")
+  testImplementation("org.junit.platform:junit-platform-launcher:1.10.1")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.1")
   testImplementation("io.github.ccjhr:nagare:3.0.7")
 }
