@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.21"
+    kotlin("jvm") version "1.9.22"
     jacoco
     `jacoco-report-aggregation`
     id("com.github.nbaztec.coveralls-jacoco") version "1.2.18"
