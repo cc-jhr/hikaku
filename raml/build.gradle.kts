@@ -21,7 +21,7 @@ dependencies {
   testImplementation("org.junit.platform:junit-platform-launcher:1.10.1")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.1")
   testImplementation("io.github.ccjhr:nagare:3.0.7")
-  testImplementation("io.mockk:mockk:1.13.8")
+  testImplementation("io.mockk:mockk:1.13.9")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
