@@ -16,7 +16,7 @@ dependencies {
   api(kotlin("stdlib"))
   api(kotlin("reflect"))
   api(kotlin("test"))
-  api("org.springframework:spring-webmvc:6.0.13")
+  api("org.springframework:spring-webmvc:6.1.3")
   api(project(":core"))
 
   testImplementation("org.junit.platform:junit-platform-launcher:1.10.1")
