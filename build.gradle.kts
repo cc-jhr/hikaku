@@ -38,7 +38,7 @@ val sources: List<File> =
 
 coverallsJacoco {
     reportSourceSets = sources
-    reportPath = "${layout.buildDirectory}/reports/jacoco/test/jacocoFullReport.xml"
+    reportPath = "${layout.buildDirectory.get().asFile.absolutePath}/reports/jacoco/test/jacocoFullReport.xml"
 }
 
 tasks.jacocoTestReport {
@@ -56,7 +56,7 @@ tasks.jacocoTestReport {
     reports {
         html.required.set(false)
         xml.required.set(true)
-        xml.outputLocation.set(file("${layout.buildDirectory}/reports/jacoco/test/jacocoFullReport.xml"))
+        xml.outputLocation.set(file("${layout.buildDirectory.get().asFile.absolutePath}/reports/jacoco/test/jacocoFullReport.xml"))
     }
     dependsOn(allprojects.map { it.tasks.named<Test>("test") })
 }
