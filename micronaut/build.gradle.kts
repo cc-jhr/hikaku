@@ -16,7 +16,7 @@ dependencies {
   api(kotlin("reflect"))
   api(kotlin("test"))
   api(project(":core"))
-  api("io.micronaut:micronaut-http:4.2.3")
+  api("io.micronaut:micronaut-http:4.3.0")
 
   testImplementation("org.junit.platform:junit-platform-launcher:1.10.1")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.1")
