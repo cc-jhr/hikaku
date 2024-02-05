@@ -20,7 +20,7 @@ dependencies {
   api(project(":core"))
 
   testImplementation("org.junit.platform:junit-platform-launcher:1.10.1")
-  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.1")
+  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.2")
   testImplementation("io.github.ccjhr:nagare:3.1.0")
   testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
   testImplementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
