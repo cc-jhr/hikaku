@@ -16,7 +16,7 @@ dependencies {
   api(kotlin("reflect"))
   api(kotlin("test"))
   api(project(":core"))
-  api("jakarta.ws.rs:jakarta.ws.rs-api:3.1.0")
+  api("jakarta.ws.rs:jakarta.ws.rs-api:4.0.0")
 
   testImplementation("org.junit.platform:junit-platform-launcher:1.10.2")
   testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.2")
